@@ -4,14 +4,18 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8376f35a-bac5-4d28-a5a4-4d0afab81109" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/Views/OrderView.form" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/Views/OrderView.java" afterDir="false" />
-    </list>
+    <list default="true" id="8376f35a-bac5-4d28-a5a4-4d0afab81109" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
@@ -48,7 +52,7 @@
       <option name="presentableId" value="Default" />
       <updated>1701165523714</updated>
       <workItem from="1701165524756" duration="640000" />
-      <workItem from="1701166194797" duration="469000" />
+      <workItem from="1701166194797" duration="1199000" />
     </task>
     <servers />
   </component>
