@@ -4,7 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8376f35a-bac5-4d28-a5a4-4d0afab81109" name="Changes" comment="" />
+    <list default="true" id="8376f35a-bac5-4d28-a5a4-4d0afab81109" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Views/OrderView.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Views/OrderView.form" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Views/OrderView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Views/OrderView.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -18,6 +22,11 @@
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$/.." value="SendnotificationtoEmployees" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
   <component name="ProjectColorInfo">{
@@ -32,8 +41,10 @@
   "keyToString": {
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "UI_DESIGNER_EDITOR_MODE.PaletteManager.SHOW": "true",
+    "UI_DESIGNER_EDITOR_MODE.UIDesignerToolWindowManager.WIDTH": "322",
     "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "dev",
+    "git-widget-placeholder": "ManageCustomerOrders",
     "ignore.virus.scanning.warn.message": "true",
     "last_opened_file_path": "E:/Education/Year 1 sem 2/OOP/Group Project/carCare/Project",
     "node.js.detected.package.eslint": "true",
@@ -52,7 +63,7 @@
       <option name="presentableId" value="Default" />
       <updated>1701165523714</updated>
       <workItem from="1701165524756" duration="640000" />
-      <workItem from="1701166194797" duration="1199000" />
+      <workItem from="1701166194797" duration="12022000" />
     </task>
     <servers />
   </component>
