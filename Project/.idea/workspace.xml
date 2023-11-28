@@ -5,9 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8376f35a-bac5-4d28-a5a4-4d0afab81109" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/Views/OrderView.form" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/Views/OrderView.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -17,9 +16,9 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 4
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 4
+}</component>
   <component name="ProjectId" id="2YndxBUbgJPsMTQV6cMRnXVlsuz" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -31,7 +30,8 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
     "git-widget-placeholder": "dev",
-    "last_opened_file_path": "E:/Education/Year 1 sem 2/OOP/projects/Inclass/lab8/BicycleApp",
+    "ignore.virus.scanning.warn.message": "true",
+    "last_opened_file_path": "E:/Education/Year 1 sem 2/OOP/Group Project/carCare/Project",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -48,6 +48,7 @@
       <option name="presentableId" value="Default" />
       <updated>1701165523714</updated>
       <workItem from="1701165524756" duration="640000" />
+      <workItem from="1701166194797" duration="469000" />
     </task>
     <servers />
   </component>
