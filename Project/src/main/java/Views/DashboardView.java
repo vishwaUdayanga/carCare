@@ -3,6 +3,8 @@ package Views;
 import javax.swing.*;
 import javax.swing.border.Border;
 import java.awt.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class DashboardView extends JFrame {
 
@@ -21,6 +23,22 @@ public class DashboardView extends JFrame {
     private JLabel repairOrders;
     private JLabel inventory;
 
+
+    public DashboardView() {
+        regularOrders.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                OrderView orderView = new OrderView();
+                orderView.setContentPane(orderView.dashboardPanel);
+                orderView.setTitle("Regular Orders");
+                orderView.setSize(800, 500);
+                orderView.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                orderView.setVisible(true);
+                Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
+                orderView.setLocation(dim.width/2-orderView.getSize().width/2, dim.height/2-orderView.getSize().height/2);
+            }
+        });
+    }
 
     public static void main(String[] args) {
         DashboardView dashboardView = new DashboardView();

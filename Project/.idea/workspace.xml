@@ -7,8 +7,10 @@
     <list default="true" id="8376f35a-bac5-4d28-a5a4-4d0afab81109" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Views/DashboardView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Views/DashboardView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Views/Images/reports.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Views/Images/reports.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Views/DashboardView.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Views/DashboardView.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Views/LoginView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Views/LoginView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Views/OrderView.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Views/OrderView.form" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Views/OrderView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Views/OrderView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Views/OrderView.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Views/OrderView.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -44,7 +46,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "UI_DESIGNER_EDITOR_MODE.PaletteManager.SHOW": "true",
     "UI_DESIGNER_EDITOR_MODE.PaletteManager.WIDTH": "142",
-    "UI_DESIGNER_EDITOR_MODE.UIDesignerToolWindowManager.WIDTH": "298",
+    "UI_DESIGNER_EDITOR_MODE.UIDesignerToolWindowManager.WIDTH": "270",
     "WebServerToolWindowFactoryState": "false",
     "git-widget-placeholder": "ManageCustomerOrders",
     "ignore.virus.scanning.warn.message": "true",
@@ -75,6 +77,7 @@
       <workItem from="1701327882664" duration="1338000" />
       <workItem from="1701785160053" duration="43000" />
       <workItem from="1701788212803" duration="301000" />
+      <workItem from="1702838929017" duration="8949000" />
     </task>
     <servers />
   </component>

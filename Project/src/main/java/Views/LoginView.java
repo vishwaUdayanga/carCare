@@ -70,7 +70,7 @@ public class LoginView extends JFrame {
     }
 
     // implement a round-shaped JTextField
-    class RoundedJTextField extends JTextField {
+    static class RoundedJTextField extends JTextField {
         private Shape shape;
         public RoundedJTextField(int size) {
             super(size);
