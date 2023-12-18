@@ -38,6 +38,19 @@ public class DashboardView extends JFrame {
                 orderView.setLocation(dim.width/2-orderView.getSize().width/2, dim.height/2-orderView.getSize().height/2);
             }
         });
+        repairOrders.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                RepairOrderView repairOrderView = new RepairOrderView();
+                repairOrderView.setContentPane(repairOrderView.dashboardPanel);
+                repairOrderView.setTitle("Repair orders");
+                repairOrderView.setSize(800, 500);
+                repairOrderView.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                repairOrderView.setVisible(true);
+                Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
+                repairOrderView.setLocation(dim.width/2-repairOrderView.getSize().width/2, dim.height/2-repairOrderView.getSize().height/2);
+            }
+        });
     }
 
     public static void main(String[] args) {

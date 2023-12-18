@@ -108,6 +108,17 @@ public class OrderView extends JFrame {
     }
 
     private void createUIComponents() {
+        Border emptyBorder = BorderFactory.createLineBorder(Color.white);
+        addButton = new JButton();
+        addButton.setBorder(emptyBorder);
+
+        deleteButton = new JButton();
+        deleteButton.setBorder(emptyBorder);
+
+        payInvoiceButton = new JButton();
+        payInvoiceButton.setBorder(emptyBorder);
+        payInvoiceButton.setMargin(new Insets(50, 50, 50, 50));
+
         dashboardRight = new JPanel();
         Border blackline = BorderFactory.createLineBorder(new Color(200, 200, 200, 255));
         dashboardRight.setBorder(blackline);
