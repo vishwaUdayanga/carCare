@@ -32,7 +32,7 @@ public class DashboardView extends JFrame {
                 orderView.setContentPane(orderView.dashboardPanel);
                 orderView.setTitle("Regular Orders");
                 orderView.setSize(800, 500);
-                orderView.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                orderView.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
                 orderView.setVisible(true);
                 Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
                 orderView.setLocation(dim.width/2-orderView.getSize().width/2, dim.height/2-orderView.getSize().height/2);
@@ -45,10 +45,23 @@ public class DashboardView extends JFrame {
                 repairOrderView.setContentPane(repairOrderView.dashboardPanel);
                 repairOrderView.setTitle("Repair orders");
                 repairOrderView.setSize(800, 500);
-                repairOrderView.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                repairOrderView.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
                 repairOrderView.setVisible(true);
                 Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
                 repairOrderView.setLocation(dim.width/2-repairOrderView.getSize().width/2, dim.height/2-repairOrderView.getSize().height/2);
+            }
+        });
+        repaintOrders.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                RepaintOrderView repaintOrderView = new RepaintOrderView();
+                repaintOrderView.setContentPane(repaintOrderView.dashboardPanel);
+                repaintOrderView.setTitle("Repaint orders");
+                repaintOrderView.setSize(800, 500);
+                repaintOrderView.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+                repaintOrderView.setVisible(true);
+                Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
+                repaintOrderView.setLocation(dim.width/2-repaintOrderView.getSize().width/2, dim.height/2-repaintOrderView.getSize().height/2);
             }
         });
     }

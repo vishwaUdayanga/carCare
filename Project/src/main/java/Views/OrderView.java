@@ -101,7 +101,7 @@ public class OrderView extends JFrame {
         orderView.setContentPane(orderView.dashboardPanel);
         orderView.setTitle("Regular Orders");
         orderView.setSize(800, 500);
-        orderView.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        orderView.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         orderView.setVisible(true);
         Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
         orderView.setLocation(dim.width/2-orderView.getSize().width/2, dim.height/2-orderView.getSize().height/2);

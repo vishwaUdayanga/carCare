@@ -1,5 +1,8 @@
 package Views;
 
+import Controllers.LoginController;
+import Models.Admin;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -19,14 +22,25 @@ public class LoginView extends JFrame {
         signInButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                DashboardView dashboardView = new DashboardView();
-                dashboardView.setContentPane(dashboardView.dashboardPanel);
-                dashboardView.setTitle("Dashboard");
-                dashboardView.setSize(800, 500);
-                dashboardView.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-                dashboardView.setVisible(true);
-                Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
-                dashboardView.setLocation(dim.width/2-dashboardView.getSize().width/2, dim.height/2-dashboardView.getSize().height/2);
+
+                String admin=userName.getText();
+                String pass=password.getText();
+                Admin u=new Admin(admin,pass,null);
+                LoginController controller=new LoginController();
+                Admin valid = controller.validateUser(u);
+
+                if (valid!=null) {
+                    DashboardView dashboardView = new DashboardView();
+                    dashboardView.setContentPane(dashboardView.dashboardPanel);
+                    dashboardView.setTitle("Dashboard");
+                    dashboardView.setSize(800, 500);
+                    dashboardView.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                    dashboardView.setVisible(true);
+                    Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
+                    dashboardView.setLocation(dim.width/2-dashboardView.getSize().width/2, dim.height/2-dashboardView.getSize().height/2);
+                } else {
+                    JOptionPane.showMessageDialog(loginPanel, "Incorrect username or password", "Error", 0);
+                }
             }
         });
     }

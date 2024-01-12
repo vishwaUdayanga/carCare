@@ -149,7 +149,7 @@ public class RepairOrderView extends JFrame {
         repairOrderView.setContentPane(repairOrderView.dashboardPanel);
         repairOrderView.setTitle("Repair orders");
         repairOrderView.setSize(800, 500);
-        repairOrderView.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        repairOrderView.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         repairOrderView.setVisible(true);
         Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
         repairOrderView.setLocation(dim.width/2-repairOrderView.getSize().width/2, dim.height/2-repairOrderView.getSize().height/2);

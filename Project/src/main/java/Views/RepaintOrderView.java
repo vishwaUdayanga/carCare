@@ -1,111 +1,333 @@
 package Views;
 
 import javax.swing.*;
+import javax.swing.border.Border;
+import javax.swing.table.DefaultTableModel;
 import java.awt.*;
+import java.awt.event.FocusAdapter;
+import java.awt.event.FocusEvent;
+import java.awt.geom.RoundRectangle2D;
 
 public class RepaintOrderView extends JFrame {
-    private JPanel backPane;
-    private JLabel companyName;
-    private JButton orderViewButton;
-    private JButton repairOrdersButton;
-    private JButton repaintOrdersButton;
-    private JButton manageInventoryButton;
-    private JButton sellersButton;
-    private JButton employeesButton;
-    private JTextField textField1;
-    private JTextField textField2;
-    private JTextField textField3;
-    private JTextField textField4;
+    public JPanel dashboardPanel;
+    private JPanel header;
+    private JPanel headerInner;
+    private JLabel home;
+    private JLabel reports;
+    private JLabel employees;
+    private JLabel sellers;
+    private JPanel orderViewLeftSide;
+    private JPanel paying;
+    private JTextField qty;
+    private JTextField email;
+    private JTextField description;
+    private JTextField productCode;
+    private JTextField servicePrice;
+    private JTextField productName;
+    private JTextField price;
+    private JTable orders;
+    private JPanel dashboardRight;
+    private JPanel topImage;
+    private JPanel orderList;
+    private JPanel bottomLine;
+    private JPanel buttonContainer;
     private JButton addButton;
     private JButton deleteButton;
-    private JTable productCodeTable;
-    private JTextField textField5;
-    private JTextField textField6;
-    private JTextField textField7;
     private JButton payInvoiceButton;
-    private JTextField textField8;
-    private JTextField textField9;
-    private JTextField textField10;
+
+    public RepaintOrderView() {
+        productCode.addFocusListener(new FocusAdapter() {
+            @Override
+            public void focusGained(FocusEvent e) {
+                if (productCode.getText().equals("Product code")) {
+                    productCode.setText("");
+                }
+            }
+        });
+        productCode.addFocusListener(new FocusAdapter() {
+            @Override
+            public void focusLost(FocusEvent e) {
+                if (productCode.getText().isEmpty()) {
+                    productCode.setText("Product code");
+                }
+            }
+        });
+        productName.addFocusListener(new FocusAdapter() {
+            @Override
+            public void focusGained(FocusEvent e) {
+                if (productName.getText().equals("Product name")) {
+                    productName.setText("");
+                }
+            }
+
+            @Override
+            public void focusLost(FocusEvent e) {
+                if (productName.getText().isEmpty()) {
+                    productName.setText("Product name");
+                }
+            }
+        });
+        price.addFocusListener(new FocusAdapter() {
+            @Override
+            public void focusGained(FocusEvent e) {
+                if (price.getText().equals("Price")) {
+                    price.setText("");
+                }
+            }
+
+            @Override
+            public void focusLost(FocusEvent e) {
+                if (price.getText().isEmpty()) {
+                    price.setText("Price");
+                }
+            }
+        });
+        qty.addFocusListener(new FocusAdapter() {
+            @Override
+            public void focusGained(FocusEvent e) {
+                if (qty.getText().equals("Qty")) {
+                    qty.setText("");
+                }
+            }
+
+            @Override
+            public void focusLost(FocusEvent e) {
+                if (qty.getText().isEmpty()) {
+                    qty.setText("Qty");
+                }
+            }
+        });
+        email.addFocusListener(new FocusAdapter() {
+            @Override
+            public void focusGained(FocusEvent e) {
+                if (email.getText().equals("Email")) {
+                    email.setText("");
+                }
+            }
+
+            @Override
+            public void focusLost(FocusEvent e) {
+                if (email.getText().isEmpty()) {
+                    email.setText("Email");
+                }
+            }
+        });
+        description.addFocusListener(new FocusAdapter() {
+            @Override
+            public void focusGained(FocusEvent e) {
+                if (description.getText().equals("Description")) {
+                    description.setText("");
+                }
+            }
+
+            @Override
+            public void focusLost(FocusEvent e) {
+                if (description.getText().isEmpty()) {
+                    description.setText("Description");
+                }
+            }
+        });
+        servicePrice.addFocusListener(new FocusAdapter() {
+            @Override
+            public void focusGained(FocusEvent e) {
+                if (servicePrice.getText().equals("Service price")) {
+                    servicePrice.setText("");
+                }
+            }
+
+            @Override
+            public void focusLost(FocusEvent e) {
+                if (servicePrice.getText().isEmpty()) {
+                    servicePrice.setText("Service price");
+                }
+            }
+        });
+    }
 
     public static void main(String[] args) {
         RepaintOrderView repaintOrderView = new RepaintOrderView();
-        repaintOrderView.setContentPane(repaintOrderView.backPane);
-        repaintOrderView.setTitle("Order View");
-        repaintOrderView.setSize(1200, 600);
-        repaintOrderView.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        repaintOrderView.setContentPane(repaintOrderView.dashboardPanel);
+        repaintOrderView.setTitle("Repaint orders");
+        repaintOrderView.setSize(800, 500);
+        repaintOrderView.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         repaintOrderView.setVisible(true);
+        Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
+        repaintOrderView.setLocation(dim.width/2-repaintOrderView.getSize().width/2, dim.height/2-repaintOrderView.getSize().height/2);
     }
 
-
     private void createUIComponents() {
-        // Company icon
-        ImageIcon icon = new ImageIcon("E:\\Education\\Year 1 sem 2\\OOP\\Group Project\\carCare\\Project\\src\\main\\java\\Views\\Images\\mainIcon.png");
-        Image iconImage = icon.getImage();
-        Image modified = iconImage.getScaledInstance(120, 80, Image.SCALE_SMOOTH);
-        icon = new ImageIcon(modified);
-        companyName = new JLabel( icon);
+        Border emptyBorder = BorderFactory.createLineBorder(Color.white);
+        addButton = new JButton();
+        addButton.setBorder(emptyBorder);
 
-        // Order view icon
-        ImageIcon orderViewIcon = new ImageIcon("E:\\Education\\Year 1 sem 2\\OOP\\Group Project\\carCare\\Project\\src\\main\\java\\Views\\Images\\orderView.png");
-        Image orderViewIconImage = orderViewIcon.getImage();
-        Image modifiedOrderViewIcon = orderViewIconImage.getScaledInstance(20, 20, Image.SCALE_SMOOTH);
-        orderViewIcon = new ImageIcon(modifiedOrderViewIcon);
-        orderViewButton = new JButton( orderViewIcon);
+        deleteButton = new JButton();
+        deleteButton.setBorder(emptyBorder);
 
-        // Repair view icon
-        ImageIcon repairIcon = new ImageIcon("E:\\Education\\Year 1 sem 2\\OOP\\Group Project\\carCare\\Project\\src\\main\\java\\Views\\Images\\inventory.png");
-        Image repairIconImage = repairIcon.getImage();
-        Image modifiedRepairIcon = repairIconImage.getScaledInstance(20, 20, Image.SCALE_SMOOTH);
-        repairIcon = new ImageIcon(modifiedRepairIcon);
-        repairOrdersButton = new JButton(repairIcon);
+        payInvoiceButton = new JButton();
+        payInvoiceButton.setBorder(emptyBorder);
+        payInvoiceButton.setMargin(new Insets(50, 50, 50, 50));
 
-        // Repaint view icon
-        ImageIcon repaintIcon = new ImageIcon("E:\\Education\\Year 1 sem 2\\OOP\\Group Project\\carCare\\Project\\src\\main\\java\\Views\\Images\\repaint.png");
-        Image repaintIconImage = repaintIcon.getImage();
-        Image modifiedRepaintIcon = repaintIconImage.getScaledInstance(20, 20, Image.SCALE_SMOOTH);
-        repaintIcon = new ImageIcon(modifiedRepaintIcon);
-        repaintOrdersButton = new JButton(repaintIcon);
+        dashboardRight = new JPanel();
+        Border blackline = BorderFactory.createLineBorder(new Color(200, 200, 200, 255));
+        dashboardRight.setBorder(blackline);
 
-        // Inventory icon
-        ImageIcon inventoryIcon = new ImageIcon("E:\\Education\\Year 1 sem 2\\OOP\\Group Project\\carCare\\Project\\src\\main\\java\\Views\\Images\\inventory.png");
-        Image inventoryIconImage = inventoryIcon.getImage();
-        Image modifiedInventoryIcon = inventoryIconImage.getScaledInstance(20, 20, Image.SCALE_SMOOTH);
-        inventoryIcon = new ImageIcon(modifiedInventoryIcon);
-        manageInventoryButton = new JButton(inventoryIcon);
+        paying = new JPanel();
+        paying.setBorder(blackline);
 
-        // Sellers icon
-        ImageIcon sellersIcon = new ImageIcon("E:\\Education\\Year 1 sem 2\\OOP\\Group Project\\carCare\\Project\\src\\main\\java\\Views\\Images\\sellers.png");
-        Image sellersIconImage = sellersIcon.getImage();
-        Image modifiedSellersIcon = sellersIconImage.getScaledInstance(20, 20, Image.SCALE_SMOOTH);
-        sellersIcon = new ImageIcon(modifiedSellersIcon);
-        sellersButton = new JButton(sellersIcon);
+        Image image = Toolkit.getDefaultToolkit().getImage("E:\\Education\\Year 1 sem 2\\OOP\\Group Project\\carCare\\Project\\src\\main\\java\\Views\\Images\\repair2.jpg");
+        topImage = new javax.swing.JPanel() {
+            protected void paintComponent(Graphics g) {
+                super.paintComponent(g);
+                g.drawImage(image, 0, 0, 260, 170,  this);
+            }
+        };
 
-        // Employee icon
-        ImageIcon employeeIcon = new ImageIcon("E:\\Education\\Year 1 sem 2\\OOP\\Group Project\\carCare\\Project\\src\\main\\java\\Views\\Images\\employee.png");
+        Image umbrellaImg = Toolkit.getDefaultToolkit().getImage("E:\\Education\\Year 1 sem 2\\OOP\\Group Project\\carCare\\Project\\src\\main\\java\\Views\\Images\\orderView4.png");
+
+        orderList = new javax.swing.JPanel() {
+            protected void paintComponent(Graphics g) {
+                super.paintComponent(g);
+                g.drawImage(umbrellaImg, 0, 0, 200, 150,  this);
+            }
+        };
+
+        ImageIcon homeIcon = new ImageIcon("E:\\Education\\Year 1 sem 2\\OOP\\Group Project\\carCare\\Project\\src\\main\\java\\Views\\Images\\home2.png");
+        Image homeIconImage = homeIcon.getImage();
+        Image modifiedHomeIcon = homeIconImage.getScaledInstance(30, 30, Image.SCALE_SMOOTH);
+        homeIcon = new ImageIcon(modifiedHomeIcon);
+        home = new JLabel( homeIcon);
+
+        ImageIcon reportIcon = new ImageIcon("E:\\Education\\Year 1 sem 2\\OOP\\Group Project\\carCare\\Project\\src\\main\\java\\Views\\Images\\reports2.png");
+        Image reportIconImage = reportIcon.getImage();
+        Image modifiedReportIcon = reportIconImage.getScaledInstance(20, 20, Image.SCALE_SMOOTH);
+        reportIcon = new ImageIcon(modifiedReportIcon);
+        reports = new JLabel( reportIcon);
+
+        ImageIcon employeeIcon = new ImageIcon("E:\\Education\\Year 1 sem 2\\OOP\\Group Project\\carCare\\Project\\src\\main\\java\\Views\\Images\\employee1.png");
         Image employeeIconImage = employeeIcon.getImage();
         Image modifiedEmployeeIcon = employeeIconImage.getScaledInstance(20, 20, Image.SCALE_SMOOTH);
         employeeIcon = new ImageIcon(modifiedEmployeeIcon);
-        employeesButton = new JButton(employeeIcon);
+        employees = new JLabel( employeeIcon);
 
-        // Add icon
-        ImageIcon addIcon = new ImageIcon("E:\\Education\\Year 1 sem 2\\OOP\\Group Project\\carCare\\Project\\src\\main\\java\\Views\\Images\\add.png");
-        Image addIconImage = addIcon.getImage();
-        Image modifiedAddIcon = addIconImage.getScaledInstance(20, 20, Image.SCALE_SMOOTH);
-        addIcon = new ImageIcon(modifiedAddIcon);
-        addButton = new JButton(addIcon);
+        ImageIcon sellerIcon = new ImageIcon("E:\\Education\\Year 1 sem 2\\OOP\\Group Project\\carCare\\Project\\src\\main\\java\\Views\\Images\\dollar.png");
+        Image sellerIconIconImage = sellerIcon.getImage();
+        Image modifiedSellerIcon = sellerIconIconImage.getScaledInstance(20, 20, Image.SCALE_SMOOTH);
+        sellerIcon = new ImageIcon(modifiedSellerIcon);
+        sellers = new JLabel( sellerIcon);
 
-        // Delete icon
-        ImageIcon deleteIcon = new ImageIcon("E:\\Education\\Year 1 sem 2\\OOP\\Group Project\\carCare\\Project\\src\\main\\java\\Views\\Images\\delete.png");
-        Image deleteIconImage = deleteIcon.getImage();
-        Image modifiedDeleteIcon = deleteIconImage.getScaledInstance(20, 20, Image.SCALE_SMOOTH);
-        deleteIcon = new ImageIcon(modifiedDeleteIcon);
-        deleteButton = new JButton(deleteIcon);
+        headerInner = new JPanel();
+        headerInner.setBackground(new Color(0, 0, 0, 0));
+        headerInner.setOpaque(false);
+        header = new javax.swing.JPanel() {
+            protected void paintComponent(Graphics g) {
+                if (g instanceof Graphics2D) {
 
-        // Pay icon
-        ImageIcon payIcon = new ImageIcon("E:\\Education\\Year 1 sem 2\\OOP\\Group Project\\carCare\\Project\\src\\main\\java\\Views\\Images\\payInvoice.png");
-        Image payIconImage = payIcon.getImage();
-        Image modifiedPayIcon = payIconImage.getScaledInstance(20, 20, Image.SCALE_SMOOTH);
-        payIcon = new ImageIcon(modifiedPayIcon);
-        payInvoiceButton = new JButton(payIcon);
+                    Paint p = new GradientPaint(0.0f, 0.0f, new Color(0, 147, 255, 255), getWidth(), getHeight(), new Color(9, 64, 121,255 ), true);
+
+                    Graphics2D g2d = (Graphics2D)g;
+                    g2d.setPaint(p);
+                    g2d.fillRect(0, 0, getWidth(), getHeight());
+                } else {
+                    super.paintComponent(g);
+                }
+            }
+        };
+
+        bottomLine = new javax.swing.JPanel() {
+            protected void paintComponent(Graphics g) {
+                if (g instanceof Graphics2D) {
+
+                    Paint p = new GradientPaint(0.0f, 0.0f, new Color(0, 147, 255, 255), getWidth(), getHeight(), new Color(9, 64, 121,255 ), true);
+
+                    Graphics2D g2d = (Graphics2D)g;
+                    g2d.setPaint(p);
+                    g2d.fillRect(0, 0, getWidth(), getHeight());
+                } else {
+                    super.paintComponent(g);
+                }
+            }
+        };
+
+        buttonContainer = new javax.swing.JPanel() {
+            protected void paintComponent(Graphics g) {
+                if (g instanceof Graphics2D) {
+
+                    Paint p = new GradientPaint(0.0f, 0.0f, new Color(219, 30, 0), getWidth(), getHeight(), new Color(200, 150, 10 ), true);
+
+                    Graphics2D g2d = (Graphics2D)g;
+                    g2d.setPaint(p);
+                    g2d.fillRect(0, 0, getWidth(), getHeight());
+                } else {
+                    super.paintComponent(g);
+                }
+            }
+        };
+
+        productCode = new RoundedJTextField(20);
+        productCode.setText("Product code");
+
+        productName = new RoundedJTextField(20);
+        productName.setText("Product name");
+
+        price = new RoundedJTextField(20);
+        price.setText("Price");
+
+        qty = new RoundedJTextField(20);
+        qty.setText("Qty");
+
+        email = new RoundedJTextField(20);
+        email.setText("Email");
+
+        description = new RoundedJTextField(20);
+        description.setText("Description");
+
+        servicePrice = new RoundedJTextField(20);
+        servicePrice.setText("Service price");
+
+        DefaultTableModel model = new DefaultTableModel();
+        orders = new JTable(model);
+        orders.setBackground(new Color(43, 45, 48, 0));
+        orders.setBorder(blackline);
+
+        // Create a couple of columns
+        model.addColumn("Col1");
+        model.addColumn("Col2");
+        model.addColumn("Col3");
+        model.addColumn("Col4");
+
+        // Append a row
+        model.addRow(new Object[]{"Order Id", "Amount", "Date", "Email"});
+        model.addRow(new Object[]{"1", "Amount", "Date", "Email"});
+        model.addRow(new Object[]{"2", "Amount", "Date", "Email"});
+        model.addRow(new Object[]{"3", "Amount", "Date", "Email"});
+        model.addRow(new Object[]{"4", "Amount", "Date", "Email"});
+
+    }
+
+    // implement a round-shaped JTextField
+    class RoundedJTextField extends JTextField {
+        private Shape shape;
+        public RoundedJTextField(int size) {
+            super(size);
+            setBounds(520, 284, 190, 25);
+            setBackground(new Color(0, 0, 0, 0));
+            setOpaque(false);
+            setMargin(new Insets(5, 20, 5, 20));
+        }
+        protected void paintComponent(Graphics g) {
+            g.setColor(new Color(0, 0, 0, 0));
+            g.fillRoundRect(0, 0, getWidth()-1, getHeight()-1, 15, 15);
+            super.paintComponent(g);
+        }
+        protected void paintBorder(Graphics g) {
+            g.setColor(new Color(165, 165, 165, 255));
+            g.drawRoundRect(0, 0, getWidth()-1, getHeight()-1, 15, 15);
+        }
+        public boolean contains(int x, int y) {
+            if (shape == null || !shape.getBounds().equals(getBounds())) {
+                shape = new RoundRectangle2D.Float(0, 0, getWidth()-1, getHeight()-1, 15, 15);
+            }
+            return shape.contains(x, y);
+        }
     }
 }
