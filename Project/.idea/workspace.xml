@@ -5,26 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8376f35a-bac5-4d28-a5a4-4d0afab81109" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/Controllers/LoginController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/Models/Admin.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/Controllers/OrderController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/DatabaseLayer/DatabaseConnection.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/Models/Order.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/Models/RepaintOrder.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/Models/RepairOrder.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ServiceLayer/OrderService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Views/DashboardView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Views/DashboardView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Views/Images/illustration-characters-fixing-cogwheel.zip" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Views/Images/online-delivery-phone-concept-officer-scan-qr-code-from-packaging-recipient-address-location-target.zip" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Views/LoginView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Views/LoginView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Views/OrderView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Views/OrderView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Views/RepaintOrderView.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Views/RepaintOrderView.form" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Views/RepaintOrderView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Views/RepaintOrderView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Views/RepairOrderView.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Views/RepairOrderView.form" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Views/RepairOrderView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Views/RepairOrderView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Views/DashboardView$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Views/DashboardView$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Views/DashboardView$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Views/DashboardView$2.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Views/DashboardView$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Views/DashboardView$3.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Views/DashboardView$4.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Views/DashboardView$4.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Views/DashboardView$5.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Views/DashboardView$5.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Views/DashboardView.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Views/DashboardView.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Views/OrderView.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Views/OrderView.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Views/RepaintOrderView.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Views/RepaintOrderView.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/Views/RepairOrderView.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Views/RepairOrderView.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -99,7 +89,7 @@
       <workItem from="1703156833737" duration="176000" />
       <workItem from="1703319405652" duration="47000" />
       <workItem from="1705046203523" duration="1830000" />
-      <workItem from="1705078053761" duration="683000" />
+      <workItem from="1705078053761" duration="5496000" />
     </task>
     <servers />
   </component>

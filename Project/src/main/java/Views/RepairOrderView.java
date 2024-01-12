@@ -1,9 +1,14 @@
 package Views;
 
+import Controllers.OrderController;
+import Models.RepairOrder;
+
 import javax.swing.*;
 import javax.swing.border.Border;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
 import java.awt.geom.RoundRectangle2D;
@@ -18,7 +23,7 @@ public class RepairOrderView extends JFrame {
     private JLabel sellers;
     private JPanel orderViewLeftSide;
     private JPanel paying;
-    private JTextField productCode;
+    private JTextField employeeEmail;
     private JTextField productName;
     private JTextField price;
     private JTextField qty;
@@ -35,20 +40,22 @@ public class RepairOrderView extends JFrame {
     private JTextField servicePrice;
     private JTextField description;
 
+    OrderController orderController;
+
     public RepairOrderView() {
-        productCode.addFocusListener(new FocusAdapter() {
+        employeeEmail.addFocusListener(new FocusAdapter() {
             @Override
             public void focusGained(FocusEvent e) {
-                if (productCode.getText().equals("Product code")) {
-                    productCode.setText("");
+                if (employeeEmail.getText().equals("Product code")) {
+                    employeeEmail.setText("");
                 }
             }
         });
-        productCode.addFocusListener(new FocusAdapter() {
+        employeeEmail.addFocusListener(new FocusAdapter() {
             @Override
             public void focusLost(FocusEvent e) {
-                if (productCode.getText().isEmpty()) {
-                    productCode.setText("Product code");
+                if (employeeEmail.getText().isEmpty()) {
+                    employeeEmail.setText("Product code");
                 }
             }
         });
@@ -139,6 +146,25 @@ public class RepairOrderView extends JFrame {
             public void focusLost(FocusEvent e) {
                 if (servicePrice.getText().isEmpty()) {
                     servicePrice.setText("Service price");
+                }
+            }
+        });
+        addButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String customerEmail = email.getText();
+                String des = description.getText();
+                Double amount = Double.parseDouble(servicePrice.getText());
+                String empEmail = employeeEmail.getText();
+                orderController = new OrderController();
+
+                RepairOrder repairOrder = orderController.addRepairOrder(customerEmail, amount, des, empEmail);
+
+                if(orderController.addRepairOrderToDatabase())
+                {
+                    JOptionPane.showMessageDialog(dashboardPanel, "Successfully Added a repair order to Database", "Sucess", 0);
+                }else {
+                    JOptionPane.showMessageDialog(dashboardPanel, "Cannot insert a repair order to DB", "Error", 0);
                 }
             }
         });
@@ -263,8 +289,8 @@ public class RepairOrderView extends JFrame {
             }
         };
 
-        productCode = new RoundedJTextField(20);
-        productCode.setText("Product code");
+        employeeEmail = new RoundedJTextField(20);
+        employeeEmail.setText("Product code");
 
         productName = new RoundedJTextField(20);
         productName.setText("Product name");
