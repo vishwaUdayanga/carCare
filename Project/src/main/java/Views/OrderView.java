@@ -3,6 +3,7 @@ package Views;
 import Controllers.OrderController;
 import Models.Order;
 import Models.RepairOrder;
+import Models.SalesProduct;
 
 import javax.swing.*;
 import javax.swing.border.Border;
@@ -153,6 +154,7 @@ public class OrderView extends JFrame {
 
                 ResultSet resultSet = orderController.findProductsFromDatabaseById(productId);
                 try {
+                    boolean status = true;
                     int actualQty = resultSet.getInt(("qty"));
 
                     if (actualQty < customerQty ) {
@@ -160,7 +162,17 @@ public class OrderView extends JFrame {
                         JOptionPane.showMessageDialog(dashboardPanel, "Not available qty", "Error", 0);
                     } else {
                         DefaultTableModel model = (DefaultTableModel)orders.getModel();
-                        model.addRow(new Object[]{productId, name, amount, customerQty});
+                        for (int i =1; i<orders.getRowCount(); i++) {
+                            if (orders.getValueAt(i, 0).equals(productId)) {
+                                status = false;
+                            }
+                        }
+
+                        if (status) {
+                            model.addRow(new Object[]{productId, name, amount, customerQty});
+                        } else {
+                            JOptionPane.showMessageDialog(dashboardPanel, "This product is already added.", "Error", 0);
+                        }
 
                         productCode.setText("Product code");
                         productName.setText("Product name");
@@ -217,12 +229,37 @@ public class OrderView extends JFrame {
                         lastIndex = resultSet.getInt(1);
                     }
 
-                    JOptionPane.showMessageDialog(dashboardPanel, "Successfully Added : "+lastIndex, "Sucess", 1);
+                    int rowCount = orders.getRowCount();
+
+                    int productId = 0;
+                    int orderId = 0;
+                    int qty = 0;
+                    Double amount = 0.0;
+
+                    SalesProduct salesProduct = null;
+
+                    for (int i =1; i<rowCount; i++) {
+                        productId = (int)orders.getValueAt(i, 0);
+                        qty = (int)orders.getValueAt(i, 3);
+                        amount = (Double)orders.getValueAt(i, 2);
+                        salesProduct = orderController.addSalesProduct(productId, lastIndex, amount, qty);
+                        if(!orderController.addSalesProductToDatabase()) {
+                            JOptionPane.showMessageDialog(dashboardPanel, "Could not add products", "Error", 0);
+                        }
+
+                        if (!orderController.reduceQty(productId, qty)) {
+                            JOptionPane.showMessageDialog(dashboardPanel, "Could not reduce qty", "Error", 0);
+                        }
+                    }
 
                     JOptionPane.showMessageDialog(dashboardPanel, "Successfully Added a order to Database", "Sucess", 1);
                     customerEmail.setText("Email");
                     subTotal.setText("0");
                     amountFinal.setText("0");
+                    DefaultTableModel model = (DefaultTableModel)orders.getModel();
+                    for (int i =1; i<rowCount; i++) {
+                        model.removeRow(i);
+                    }
                 } catch (Exception ex) {
                     JOptionPane.showMessageDialog(dashboardPanel, "Cannot insert a repair order to DB", "Error", 1);
                 }

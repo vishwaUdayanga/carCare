@@ -4,6 +4,7 @@ import DatabaseLayer.DatabaseConnection;
 import Models.Order;
 import Models.RepaintOrder;
 import Models.RepairOrder;
+import Models.SalesProduct;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -37,6 +38,32 @@ public class OrderService {
         try
         {
             String query="insert into repaint_orders(customer_email, employee_email, description, amount) values ('"+repaintOrder.getEmail()+"','"+repaintOrder.getEmployeeEmail()+"','"+repaintOrder.getDescription()+"','"+repaintOrder.getAmount()+"')";
+            boolean result=singleConn.ExecuteQuery(query);
+            return result;
+        }catch (Exception ex)
+        {
+            System.out.println("Cannot insert a rider");
+            return false;
+        }
+    }
+
+    public boolean addSalesProduct(SalesProduct salesProduct) {
+        try
+        {
+            String query="insert into sales_products(product_id, order_id, qty, amount) values ('"+salesProduct.getProductId()+"','"+salesProduct.getOrderId()+"','"+salesProduct.getQty()+"','"+salesProduct.getAmount()+"')";
+            boolean result=singleConn.ExecuteQuery(query);
+            return result;
+        }catch (Exception ex)
+        {
+            System.out.println("Cannot insert a rider");
+            return false;
+        }
+    }
+
+    public boolean reduceQtyDB(int productId, int qty) {
+        try
+        {
+            String query="update spare_parts set qty = qty - "+qty+" where id = "+productId;
             boolean result=singleConn.ExecuteQuery(query);
             return result;
         }catch (Exception ex)

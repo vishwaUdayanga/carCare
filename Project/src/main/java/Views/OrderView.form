@@ -147,7 +147,7 @@
                     </constraints>
                     <properties>
                       <foreground color="-10986914"/>
-                      <text value="$212.2"/>
+                      <text value="Rs. 0"/>
                     </properties>
                   </component>
                   <component id="78742" class="javax.swing.JLabel">
@@ -156,7 +156,7 @@
                     </constraints>
                     <properties>
                       <foreground color="-10986914"/>
-                      <text value="$250"/>
+                      <text value="0"/>
                     </properties>
                   </component>
                   <component id="b8b28" class="javax.swing.JLabel">
@@ -174,7 +174,7 @@
                     </constraints>
                     <properties>
                       <foreground color="-10986914"/>
-                      <text value="$37.8"/>
+                      <text value="0"/>
                     </properties>
                   </component>
                   <component id="b8858" class="javax.swing.JLabel">
@@ -194,7 +194,7 @@
                     <properties>
                       <font name="Arial Rounded MT Bold" size="18" style="1"/>
                       <foreground color="-10986914"/>
-                      <text value="$212.2"/>
+                      <text value="Rs. 0"/>
                     </properties>
                   </component>
                 </children>

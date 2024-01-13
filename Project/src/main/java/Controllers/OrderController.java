@@ -3,6 +3,7 @@ package Controllers;
 import Models.Order;
 import Models.RepaintOrder;
 import Models.RepairOrder;
+import Models.SalesProduct;
 import ServiceLayer.OrderService;
 
 import java.sql.ResultSet;
@@ -13,6 +14,8 @@ public class OrderController {
     RepaintOrder repaintOrder;
 
     Order order;
+
+    SalesProduct salesProduct;
 
     OrderService service;
 
@@ -36,6 +39,11 @@ public class OrderController {
         return order;
     }
 
+    public SalesProduct addSalesProduct(int productId, int orderId, Double amount, int qty) {
+        salesProduct = new SalesProduct(productId, orderId, amount, qty);
+        return salesProduct;
+    }
+
     public boolean addRepairOrderToDatabase()
     {
         return service.addRepairOrder(repairOrder);
@@ -44,6 +52,15 @@ public class OrderController {
     public boolean addRepaintOrderToDatabase()
     {
         return service.addRepaintOrder(repaintOrder);
+    }
+
+    public boolean addSalesProductToDatabase()
+    {
+        return service.addSalesProduct(salesProduct);
+    }
+
+    public boolean reduceQty(int productId, int qty) {
+        return service.reduceQtyDB(productId, qty);
     }
 
     public ResultSet addOrderToDatabase()
