@@ -1,14 +1,16 @@
 package Views;
 
+import Controllers.OrderController;
+import Models.Order;
+import Models.RepairOrder;
+
 import javax.swing.*;
 import javax.swing.border.Border;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
-import java.awt.event.FocusAdapter;
-import java.awt.event.FocusEvent;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
+import java.awt.event.*;
 import java.awt.geom.RoundRectangle2D;
+import java.sql.ResultSet;
 
 public class OrderView extends JFrame {
     public JPanel dashboardPanel;
@@ -33,6 +35,12 @@ public class OrderView extends JFrame {
     private JTextField price;
     private JTextField qty;
     private JTable orders;
+    private JLabel subTotal;
+    private JLabel amountFinal;
+    private JTextField customerEmail;
+
+    OrderController orderController;
+
 
     public OrderView() {
         productCode.addFocusListener(new FocusAdapter() {
@@ -96,15 +104,131 @@ public class OrderView extends JFrame {
                 }
             }
         });
+
+        customerEmail.addFocusListener(new FocusAdapter() {
+            @Override
+            public void focusGained(FocusEvent e) {
+                if (customerEmail.getText().equals("Email")) {
+                    customerEmail.setText("");
+                }
+            }
+
+            @Override
+            public void focusLost(FocusEvent e) {
+                if (customerEmail.getText().isEmpty()) {
+                    customerEmail.setText("Email");
+                }
+            }
+        });
         productCode.addKeyListener(new KeyAdapter() {
             @Override
             public void keyPressed(KeyEvent e) {
                 if(e.getKeyCode() == KeyEvent.VK_ENTER) {
                     int productId = Integer.parseInt(productCode.getText());
+                    orderController = new OrderController();
+                    ResultSet resultSet = orderController.findProductsFromDatabaseById(productId);
+                    try {
+                        String name = resultSet.getString("name");
+                        Double productPrice = resultSet.getDouble("price");
+
+                        productName.setText(name);
+                        price.setText(String.valueOf(productPrice));
+
+                    } catch (Exception ex) {
+                        JOptionPane.showMessageDialog(dashboardPanel, "Product not found", "Error", 0);
+                    }
+
                 }
                 super.keyPressed(e);
             }
         });
+        addButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                int productId = Integer.parseInt(productCode.getText());
+                String name = productName.getText();
+                Double productPrice = Double.parseDouble(price.getText());
+                int customerQty = Integer.parseInt(qty.getText());
+                Double amount = productPrice * customerQty;
+
+                ResultSet resultSet = orderController.findProductsFromDatabaseById(productId);
+                try {
+                    int actualQty = resultSet.getInt(("qty"));
+
+                    if (actualQty < customerQty ) {
+                        JOptionPane.showMessageDialog(dashboardPanel, "Available qty : " + actualQty, "Error", 0);
+                        JOptionPane.showMessageDialog(dashboardPanel, "Not available qty", "Error", 0);
+                    } else {
+                        DefaultTableModel model = (DefaultTableModel)orders.getModel();
+                        model.addRow(new Object[]{productId, name, amount, customerQty});
+
+                        productCode.setText("Product code");
+                        productName.setText("Product name");
+                        price.setText("Price");
+                        qty.setText("Qty");
+
+                        Double sum =0.0;
+                        for (int i=1; i<orders.getRowCount(); i++) {
+                            sum += Double.parseDouble(orders.getValueAt(i, 2).toString());
+                        }
+
+                        subTotal.setText(Double.toString(sum));
+                        amountFinal.setText(Double.toString(sum));
+                    }
+
+                } catch (Exception ex) {
+                    JOptionPane.showMessageDialog(dashboardPanel, "Product not found", "Error", 0);
+                    System.out.println(ex.getMessage());
+                }
+            }
+        });
+        orders.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+
+            }
+        });
+        deleteButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                DefaultTableModel model = (DefaultTableModel)orders.getModel();
+                model.removeRow(orders.getSelectedRow());
+                Double sum =0.0;
+                for (int i=1; i<orders.getRowCount(); i++) {
+                    sum += Double.parseDouble(orders.getValueAt(i, 2).toString());
+                }
+
+                subTotal.setText(Double.toString(sum));
+                amountFinal.setText(Double.toString(sum));
+            }
+        });
+        payInvoiceButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Double total = Double.parseDouble(amountFinal.getText());
+                String email = customerEmail.getText();
+                Order order = orderController.addOrder(email, total);
+                int lastIndex = 0;
+
+                try {
+                    ResultSet resultSet = orderController.addOrderToDatabase();
+
+                    if (resultSet.next()) {
+                        lastIndex = resultSet.getInt(1);
+                    }
+
+                    JOptionPane.showMessageDialog(dashboardPanel, "Successfully Added : "+lastIndex, "Sucess", 1);
+
+                    JOptionPane.showMessageDialog(dashboardPanel, "Successfully Added a order to Database", "Sucess", 1);
+                    customerEmail.setText("Email");
+                    subTotal.setText("0");
+                    amountFinal.setText("0");
+                } catch (Exception ex) {
+                    JOptionPane.showMessageDialog(dashboardPanel, "Cannot insert a repair order to DB", "Error", 1);
+                }
+            }
+        });
+
     }
 
     public static void main(String[] args) {
@@ -238,10 +362,12 @@ public class OrderView extends JFrame {
         qty = new RoundedJTextField(20);
         qty.setText("Qty");
 
+
+        customerEmail = new RoundedJTextField(20);
+        customerEmail.setText("Email");
+
         DefaultTableModel model = new DefaultTableModel();
         orders = new JTable(model);
-        orders.setBackground(new Color(43, 45, 48, 0));
-        orders.setBorder(blackline);
 
         // Create a couple of columns
         model.addColumn("Col1");
@@ -250,15 +376,7 @@ public class OrderView extends JFrame {
         model.addColumn("Col4");
 
         // Append a row
-        model.addRow(new Object[]{"Order Id", "Amount", "Date", "Email"});
-        model.addRow(new Object[]{"1", "Amount", "Date", "Email"});
-        model.addRow(new Object[]{"2", "Amount", "Date", "Email"});
-        model.addRow(new Object[]{"3", "Amount", "Date", "Email"});
-        model.addRow(new Object[]{"4", "Amount", "Date", "Email"});
-        model.addRow(new Object[]{"1", "Amount", "Date", "Email"});
-        model.addRow(new Object[]{"2", "Amount", "Date", "Email"});
-        model.addRow(new Object[]{"3", "Amount", "Date", "Email"});
-        model.addRow(new Object[]{"4", "Amount", "Date", "Email"});
+        model.addRow(new Object[]{"Product id", "Name", "Price", "QTY"});
 
     }
 

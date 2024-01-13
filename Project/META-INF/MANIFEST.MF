@@ -1,0 +1,4 @@
+Manifest-Version: 1.0
+Main-Class: Views.LoginView
+Class-Path: protobuf-java-3.19.4.jar mysql-connector-j-8.0.31.jar
+

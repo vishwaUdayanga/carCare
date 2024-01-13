@@ -5,15 +5,30 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8376f35a-bac5-4d28-a5a4-4d0afab81109" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/artifacts/Project_jar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/META-INF/MANIFEST.MF" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Controllers/OrderController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Controllers/OrderController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/DatabaseLayer/DatabaseConnection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/DatabaseLayer/DatabaseConnection.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Models/RepaintOrder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Models/RepaintOrder.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/ServiceLayer/OrderService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ServiceLayer/OrderService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Views/OrderView.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Views/OrderView.form" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Views/OrderView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Views/OrderView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Views/RepaintOrderView.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Views/RepaintOrderView.form" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Views/RepaintOrderView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Views/RepaintOrderView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Views/RepairOrderView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Views/RepairOrderView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Controllers/OrderController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Controllers/OrderController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/DatabaseLayer/DatabaseConnection.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/DatabaseLayer/DatabaseConnection.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/ServiceLayer/OrderService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/ServiceLayer/OrderService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Views/OrderView$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Views/OrderView$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Views/OrderView$10.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Views/OrderView$10.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Views/OrderView$11.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Views/OrderView$11.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Views/OrderView$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Views/OrderView$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Views/OrderView$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Views/OrderView$3.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Views/OrderView$4.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Views/OrderView$4.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Views/OrderView$5.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Views/OrderView$5.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Views/OrderView$6.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Views/OrderView$6.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Views/OrderView$7.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Views/OrderView$7.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Views/OrderView$8.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Views/OrderView$8.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Views/OrderView$9.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Views/OrderView$9.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Views/OrderView$RoundedJTextField.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Views/OrderView$RoundedJTextField.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Views/OrderView.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Views/OrderView.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -47,6 +62,7 @@
   "keyToString": {
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "UI_DESIGNER_EDITOR_MODE.PaletteManager.SHOW": "true",
     "UI_DESIGNER_EDITOR_MODE.PaletteManager.WIDTH": "182",
     "UI_DESIGNER_EDITOR_MODE.UIDesignerToolWindowManager.WIDTH": "173",
@@ -58,6 +74,9 @@
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
+    "project.structure.last.edited": "Artifacts",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
     "settings.editor.selected.configurable": "preferences.editor",
     "vue.rearranger.settings.migration": "true"
   }
@@ -88,7 +107,8 @@
       <workItem from="1703319405652" duration="47000" />
       <workItem from="1705046203523" duration="1830000" />
       <workItem from="1705078053761" duration="5866000" />
-      <workItem from="1705112357362" duration="8574000" />
+      <workItem from="1705112357362" duration="16914000" />
+      <workItem from="1705130036643" duration="9132000" />
     </task>
     <servers />
   </component>

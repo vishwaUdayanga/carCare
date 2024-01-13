@@ -1,6 +1,7 @@
 package ServiceLayer;
 
 import DatabaseLayer.DatabaseConnection;
+import Models.Order;
 import Models.RepaintOrder;
 import Models.RepairOrder;
 
@@ -45,17 +46,31 @@ public class OrderService {
         }
     }
 
-    public PreparedStatement getPreparedStatement(int id) {
+    public ResultSet addOrder(Order order) {
         try
         {
-            preparedStatement = singleConn.con.prepareStatement("select * from spare_parts where id = ?");
-            preparedStatement.setString(1, String.valueOf(id));
+            singleConn.setPreparedStatementForLastId("insert into orders(customer_email, amount) values ('"+order.getEmail()+"','"+order.getAmount()+"')");
+            result = singleConn.ExecutePreparedStatementForLastIndex();
             return result;
         }catch (Exception ex)
         {
-            System.out.println("Cannot insert a rider");
-            return false;
+            System.out.println("Cannot insert an Order");
+            return result;
         }
-        return preparedStatement;
+    }
+
+    public ResultSet getProductsById(int id) {
+        try
+        {
+            System.out.println(id);
+            singleConn.setPreparedStatement("select * from spare_parts where id=?");
+            singleConn.preparedStatement.setInt(1, id);
+            result = singleConn.ExecutePreparedStatement();
+            return result;
+        }catch (Exception ex)
+        {
+            System.out.println(ex.getMessage());
+        }
+        return result;
     }
 }
