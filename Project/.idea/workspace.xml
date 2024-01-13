@@ -4,19 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8376f35a-bac5-4d28-a5a4-4d0afab81109" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/Project_jar/Project.jar" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/Project_jar/Project.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Views/OrderView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Views/OrderView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Views/OrderView$11.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Views/OrderView$11.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Views/OrderView$12.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Views/OrderView$12.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Views/OrderView$13.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Views/OrderView$13.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Views/OrderView$14.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Views/OrderView$14.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Views/OrderView$15.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Views/OrderView$15.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Views/OrderView$16.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Views/OrderView$16.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Views/OrderView$RoundedJTextField.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Views/OrderView$RoundedJTextField.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Views/OrderView.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Views/OrderView.class" afterDir="false" />
-    </list>
+    <list default="true" id="8376f35a-bac5-4d28-a5a4-4d0afab81109" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -95,7 +83,7 @@
       <workItem from="1705046203523" duration="1830000" />
       <workItem from="1705078053761" duration="5866000" />
       <workItem from="1705112357362" duration="16914000" />
-      <workItem from="1705130036643" duration="15690000" />
+      <workItem from="1705130036643" duration="16010000" />
     </task>
     <servers />
   </component>
