@@ -1,20 +1,28 @@
 package Models;
 
 public class RepaintOrder extends Order{
-    private boolean status;
     private String description;
+    private String employeeEmail;
 
-    public RepaintOrder(String email, Double amount, boolean status, String description) {
+    public RepaintOrder(String email, Double amount, String description, String employeeEmail) {
         super(email, amount);
-        this.status = status;
         this.description = description;
+        this.employeeEmail = employeeEmail;
     }
 
-    public void setStatus(boolean status) {
-        this.status = status;
+    public String getDescription() {
+        return description;
+    }
+
+    public String getEmployeeEmail() {
+        return employeeEmail;
     }
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public void setEmployeeEmail(String employeeEmail) {
+        this.employeeEmail = employeeEmail;
     }
 }

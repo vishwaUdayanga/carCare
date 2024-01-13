@@ -1,9 +1,15 @@
 package Views;
 
+import Controllers.OrderController;
+import Models.RepaintOrder;
+import Models.RepairOrder;
+
 import javax.swing.*;
 import javax.swing.border.Border;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
 import java.awt.geom.RoundRectangle2D;
@@ -21,7 +27,7 @@ public class RepaintOrderView extends JFrame {
     private JTextField qty;
     private JTextField email;
     private JTextField description;
-    private JTextField productCode;
+    private JTextField employeeEmail;
     private JTextField servicePrice;
     private JTextField productName;
     private JTextField price;
@@ -35,20 +41,22 @@ public class RepaintOrderView extends JFrame {
     private JButton deleteButton;
     private JButton payInvoiceButton;
 
+    OrderController orderController;
+
     public RepaintOrderView() {
-        productCode.addFocusListener(new FocusAdapter() {
+        employeeEmail.addFocusListener(new FocusAdapter() {
             @Override
             public void focusGained(FocusEvent e) {
-                if (productCode.getText().equals("Product code")) {
-                    productCode.setText("");
+                if (employeeEmail.getText().equals("Employee email")) {
+                    employeeEmail.setText("");
                 }
             }
         });
-        productCode.addFocusListener(new FocusAdapter() {
+        employeeEmail.addFocusListener(new FocusAdapter() {
             @Override
             public void focusLost(FocusEvent e) {
-                if (productCode.getText().isEmpty()) {
-                    productCode.setText("Product code");
+                if (employeeEmail.getText().isEmpty()) {
+                    employeeEmail.setText("Employee email");
                 }
             }
         });
@@ -100,7 +108,7 @@ public class RepaintOrderView extends JFrame {
         email.addFocusListener(new FocusAdapter() {
             @Override
             public void focusGained(FocusEvent e) {
-                if (email.getText().equals("Email")) {
+                if (email.getText().equals("Customer email")) {
                     email.setText("");
                 }
             }
@@ -108,7 +116,7 @@ public class RepaintOrderView extends JFrame {
             @Override
             public void focusLost(FocusEvent e) {
                 if (email.getText().isEmpty()) {
-                    email.setText("Email");
+                    email.setText("Customer email");
                 }
             }
         });
@@ -139,6 +147,25 @@ public class RepaintOrderView extends JFrame {
             public void focusLost(FocusEvent e) {
                 if (servicePrice.getText().isEmpty()) {
                     servicePrice.setText("Service price");
+                }
+            }
+        });
+        addButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String customerEmail = email.getText();
+                String des = description.getText();
+                Double amount = Double.parseDouble(servicePrice.getText());
+                String empEmail = employeeEmail.getText();
+                orderController = new OrderController();
+
+                RepaintOrder repaintOrder = orderController.addRepaintOrder(customerEmail, amount, des, empEmail);
+
+                if(orderController.addRepaintOrderToDatabase())
+                {
+                    JOptionPane.showMessageDialog(dashboardPanel, "Successfully Added a repair order to Database", "Sucess", 1);
+                }else {
+                    JOptionPane.showMessageDialog(dashboardPanel, "Cannot insert a repair order to DB", "Error", 1);
                 }
             }
         });
@@ -263,8 +290,8 @@ public class RepaintOrderView extends JFrame {
             }
         };
 
-        productCode = new RoundedJTextField(20);
-        productCode.setText("Product code");
+        employeeEmail = new RoundedJTextField(20);
+        employeeEmail.setText("Product code");
 
         productName = new RoundedJTextField(20);
         productName.setText("Product name");

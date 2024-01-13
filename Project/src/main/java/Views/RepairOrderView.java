@@ -162,9 +162,9 @@ public class RepairOrderView extends JFrame {
 
                 if(orderController.addRepairOrderToDatabase())
                 {
-                    JOptionPane.showMessageDialog(dashboardPanel, "Successfully Added a repair order to Database", "Sucess", 0);
+                    JOptionPane.showMessageDialog(dashboardPanel, "Successfully Added a repair order to Database", "Sucess", 1);
                 }else {
-                    JOptionPane.showMessageDialog(dashboardPanel, "Cannot insert a repair order to DB", "Error", 0);
+                    JOptionPane.showMessageDialog(dashboardPanel, "Cannot insert a repair order to DB", "Error", 1);
                 }
             }
         });

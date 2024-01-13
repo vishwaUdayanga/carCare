@@ -10,7 +10,7 @@ public class DatabaseConnection {
     private final String UName="root";
     private final String Password="";
     private static DatabaseConnection instance;
-    private Connection con;
+    public Connection con;
 
     private DatabaseConnection()
     {

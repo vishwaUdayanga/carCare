@@ -6,6 +6,8 @@ import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.awt.geom.RoundRectangle2D;
 
 public class OrderView extends JFrame {
@@ -92,6 +94,15 @@ public class OrderView extends JFrame {
                 if (qty.getText().isEmpty()) {
                     qty.setText("Qty");
                 }
+            }
+        });
+        productCode.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent e) {
+                if(e.getKeyCode() == KeyEvent.VK_ENTER) {
+                    int productId = Integer.parseInt(productCode.getText());
+                }
+                super.keyPressed(e);
             }
         });
     }
