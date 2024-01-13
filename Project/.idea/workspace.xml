@@ -21,6 +21,11 @@
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$/.." value="SendnotificationtoEmployees" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
   <component name="ProjectColorInfo">{
@@ -35,12 +40,20 @@
   "keyToString": {
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "UI_DESIGNER_EDITOR_MODE.PaletteManager.SHOW": "true",
+    "UI_DESIGNER_EDITOR_MODE.PaletteManager.WIDTH": "182",
+    "UI_DESIGNER_EDITOR_MODE.UIDesignerToolWindowManager.WIDTH": "173",
     "WebServerToolWindowFactoryState": "false",
+<<<<<<< HEAD
 <<<<<<< Updated upstream
     "git-widget-placeholder": "dev",
 =======
     "git-widget-placeholder": "main",
 >>>>>>> Stashed changes
+=======
+    "git-widget-placeholder": "ManageCustomerOrders",
+>>>>>>> main
     "ignore.virus.scanning.warn.message": "true",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "C:/oop/carCare/Project",
@@ -48,16 +61,24 @@
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
+    "project.structure.last.edited": "Artifacts",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "preferences.editor",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
+<<<<<<< HEAD
 <<<<<<< Updated upstream
 =======
+=======
+>>>>>>> main
   <component name="RecentsManager">
     <key name="ExtractSuperBase.RECENT_KEYS">
       <recent name="Views" />
     </key>
   </component>
+<<<<<<< HEAD
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
@@ -66,6 +87,8 @@
     </attachedChunks>
   </component>
 >>>>>>> Stashed changes
+=======
+>>>>>>> main
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -75,7 +98,20 @@
       <option name="presentableId" value="Default" />
       <updated>1701165523714</updated>
       <workItem from="1701165524756" duration="640000" />
-      <workItem from="1701166194797" duration="1199000" />
+      <workItem from="1701166194797" duration="12022000" />
+      <workItem from="1701327882664" duration="1338000" />
+      <workItem from="1701785160053" duration="43000" />
+      <workItem from="1701788212803" duration="301000" />
+      <workItem from="1702838929017" duration="9053000" />
+      <workItem from="1702928429692" duration="3832000" />
+      <workItem from="1702980576121" duration="2208000" />
+      <workItem from="1703156709947" duration="17000" />
+      <workItem from="1703156833737" duration="176000" />
+      <workItem from="1703319405652" duration="47000" />
+      <workItem from="1705046203523" duration="1830000" />
+      <workItem from="1705078053761" duration="5866000" />
+      <workItem from="1705112357362" duration="16914000" />
+      <workItem from="1705130036643" duration="16010000" />
     </task>
     <servers />
   </component>
