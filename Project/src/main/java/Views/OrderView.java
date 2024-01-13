@@ -256,12 +256,13 @@ public class OrderView extends JFrame {
                     customerEmail.setText("Email");
                     subTotal.setText("0");
                     amountFinal.setText("0");
-                    DefaultTableModel model = (DefaultTableModel)orders.getModel();
-                    for (int i =1; i<rowCount; i++) {
-                        model.removeRow(i);
+                    DefaultTableModel model = (DefaultTableModel) orders.getModel();
+                    int count = model.getRowCount();
+                    for (int i = rowCount; i > 1 ; i--){
+                        model.removeRow(i-1);
                     }
                 } catch (Exception ex) {
-                    JOptionPane.showMessageDialog(dashboardPanel, "Cannot insert a repair order to DB", "Error", 1);
+                    JOptionPane.showMessageDialog(dashboardPanel, "Cannot insert a repair order to DB : " + ex.getMessage(), "Error", 1);
                 }
             }
         });
