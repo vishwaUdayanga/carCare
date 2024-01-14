@@ -139,4 +139,43 @@ public class OrderService {
             return false;
         }
     }
+
+    public ResultSet getRepaintOrders() {
+        try
+        {
+            singleConn.setPreparedStatement("select * from repaint_orders");
+            result = singleConn.ExecutePreparedStatement();
+            return result;
+        }catch (Exception ex)
+        {
+            System.out.println(ex.getMessage());
+        }
+        return result;
+    }
+
+    public boolean deleteRepaintOrder(String id) {
+        try
+        {
+            String query="delete from repaint_orders where order_id = '"+id+"'";
+            boolean result=singleConn.ExecuteQuery(query);
+            return result;
+        }catch (Exception ex)
+        {
+            System.out.println("Cannot delete the repaint order");
+            return false;
+        }
+    }
+
+    public boolean updateRepaintOrderStatus(String id) {
+        try
+        {
+            String query="update repaint_orders set status = 1 where order_id = '"+id+"'";
+            boolean result=singleConn.ExecuteQuery(query);
+            return result;
+        }catch (Exception ex)
+        {
+            System.out.println("Cannot update the repaint order");
+            return false;
+        }
+    }
 }

@@ -235,7 +235,7 @@ public class RepairOrderView extends JFrame {
                             System.out.println("Message sent");
                             updateTable();
                         }
-                        else{
+                        else {
                             JOptionPane.showMessageDialog(dashboardPanel, "Could not update the repair order.", "Error", 0);
                         }
                     } catch (Exception ex) {
