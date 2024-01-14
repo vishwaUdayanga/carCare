@@ -72,4 +72,19 @@ public class OrderController {
         ResultSet resultSet = service.getProductsById(id);
         return resultSet;
     }
+
+    public ResultSet findRepairOrders() {
+        ResultSet resultSet = service.getRepairOrders();
+        return resultSet;
+    }
+
+    public boolean deleteRepairOrder(String id)
+    {
+        return service.deleteRepairOrder(id);
+    }
+
+    public boolean updateRepairOrderStatus(String id)
+    {
+        return service.updateRepairOrderStatus(id);
+    }
 }

@@ -100,4 +100,43 @@ public class OrderService {
         }
         return result;
     }
+
+    public ResultSet getRepairOrders() {
+        try
+        {
+            singleConn.setPreparedStatement("select * from repair_orders");
+            result = singleConn.ExecutePreparedStatement();
+            return result;
+        }catch (Exception ex)
+        {
+            System.out.println(ex.getMessage());
+        }
+        return result;
+    }
+
+    public boolean deleteRepairOrder(String id) {
+        try
+        {
+            String query="delete from repair_orders where order_id = '"+id+"'";
+            boolean result=singleConn.ExecuteQuery(query);
+            return result;
+        }catch (Exception ex)
+        {
+            System.out.println("Cannot delete the repair order");
+            return false;
+        }
+    }
+
+    public boolean updateRepairOrderStatus(String id) {
+        try
+        {
+            String query="update repair_orders set status = 1 where order_id = '"+id+"'";
+            boolean result=singleConn.ExecuteQuery(query);
+            return result;
+        }catch (Exception ex)
+        {
+            System.out.println("Cannot update the repair order");
+            return false;
+        }
+    }
 }

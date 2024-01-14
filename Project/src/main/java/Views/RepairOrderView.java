@@ -1,5 +1,6 @@
 package Views;
 
+import Controllers.EmployeeController;
 import Controllers.OrderController;
 import Models.RepairOrder;
 
@@ -12,6 +13,9 @@ import java.awt.event.ActionListener;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
 import java.awt.geom.RoundRectangle2D;
+import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
+import java.util.Vector;
 
 public class RepairOrderView extends JFrame {
     public JPanel dashboardPanel;
@@ -39,14 +43,16 @@ public class RepairOrderView extends JFrame {
     private JTextField email;
     private JTextField servicePrice;
     private JTextField description;
+    private JButton statusBtn;
 
     OrderController orderController;
 
     public RepairOrderView() {
+        updateTable();
         employeeEmail.addFocusListener(new FocusAdapter() {
             @Override
             public void focusGained(FocusEvent e) {
-                if (employeeEmail.getText().equals("Product code")) {
+                if (employeeEmail.getText().equals("Employee Email")) {
                     employeeEmail.setText("");
                 }
             }
@@ -55,7 +61,7 @@ public class RepairOrderView extends JFrame {
             @Override
             public void focusLost(FocusEvent e) {
                 if (employeeEmail.getText().isEmpty()) {
-                    employeeEmail.setText("Product code");
+                    employeeEmail.setText("Employee Email");
                 }
             }
         });
@@ -107,7 +113,7 @@ public class RepairOrderView extends JFrame {
         email.addFocusListener(new FocusAdapter() {
             @Override
             public void focusGained(FocusEvent e) {
-                if (email.getText().equals("Email")) {
+                if (email.getText().equals("Customer Email")) {
                     email.setText("");
                 }
             }
@@ -115,7 +121,7 @@ public class RepairOrderView extends JFrame {
             @Override
             public void focusLost(FocusEvent e) {
                 if (email.getText().isEmpty()) {
-                    email.setText("Email");
+                    email.setText("Customer Email");
                 }
             }
         });
@@ -163,11 +169,104 @@ public class RepairOrderView extends JFrame {
                 if(orderController.addRepairOrderToDatabase())
                 {
                     JOptionPane.showMessageDialog(dashboardPanel, "Successfully Added a repair order to Database", "Sucess", 1);
+                    updateTable();
                 }else {
                     JOptionPane.showMessageDialog(dashboardPanel, "Cannot insert a repair order to DB", "Error", 1);
                 }
+
+                employeeEmail.setText("Employee Email");
+                description.setText("Description");
+                servicePrice.setText("Service price");
+                email.setText("Customer Email");
             }
         });
+        deleteButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                DefaultTableModel model = (DefaultTableModel)orders.getModel();
+                int selectedIndex = orders.getSelectedRow();
+
+                String id = model.getValueAt(selectedIndex, 0).toString();
+                orderController = new OrderController();
+                try {
+                    if(orderController.deleteRepairOrder(id)){
+                        JOptionPane.showMessageDialog(dashboardPanel, "Repair order deleted.", "Success", 1);
+                        updateTable();
+                    }
+                    else{
+                        JOptionPane.showMessageDialog(dashboardPanel, "Could not delete the repair order", "Error", 0);
+                    }
+                } catch (Exception ex) {
+                    JOptionPane.showMessageDialog(dashboardPanel, "Could not delete repair order", "Error", 0);
+                }
+            }
+        });
+        statusBtn.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                DefaultTableModel model = (DefaultTableModel)orders.getModel();
+                int selectedIndex = orders.getSelectedRow();
+
+                String status = model.getValueAt(selectedIndex, 3).toString();
+                String id = model.getValueAt(selectedIndex, 0).toString();
+                orderController = new OrderController();
+
+                if (status.equals("0")) {
+                    try {
+                        if(orderController.updateRepairOrderStatus(id)){
+                            JOptionPane.showMessageDialog(dashboardPanel, "Repair order is ready now.", "Success", 1);
+                            updateTable();
+                        }
+                        else{
+                            JOptionPane.showMessageDialog(dashboardPanel, "Could not update the repair order.", "Error", 0);
+                        }
+                    } catch (Exception ex) {
+                        JOptionPane.showMessageDialog(dashboardPanel, "Could not update the repair order.", "Error", 0);
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(dashboardPanel, "Already updated this repair order.", "Error", 0);
+                }
+            }
+        });
+    }
+
+    public void updateTable() {
+        orderController = new OrderController();
+        try {
+            ResultSet repairOrders = orderController.findRepairOrders();
+            ResultSetMetaData resultSetMetaData = repairOrders.getMetaData();
+            int c = resultSetMetaData.getColumnCount();
+
+            DefaultTableModel model = (DefaultTableModel)orders.getModel();
+            model.setRowCount(0);
+            Vector vector = new Vector();
+
+            for (int i=1; i<=c; i++) {
+                vector.add(repairOrders.getString("order_id"));
+                vector.add(repairOrders.getString("customer_email"));
+                vector.add(repairOrders.getString("employee_email"));
+                vector.add(repairOrders.getString("status"));
+                vector.add(repairOrders.getString("description"));
+                vector.add(repairOrders.getString("amount"));
+            }
+            model.addRow(vector);
+            while (repairOrders.next()) {
+                Vector vector1 = new Vector();
+
+                for (int i=1; i<=c; i++) {
+                    vector1.add(repairOrders.getString("order_id"));
+                    vector1.add(repairOrders.getString("customer_email"));
+                    vector1.add(repairOrders.getString("employee_email"));
+                    vector1.add(repairOrders.getString("status"));
+                    vector1.add(repairOrders.getString("description"));
+                    vector1.add(repairOrders.getString("amount"));
+                }
+                model.addRow(vector1);
+            }
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(dashboardPanel, "Could not fetch repair order details", "Error", 0);
+            System.out.println(ex.getMessage());
+        }
     }
 
     public static void main(String[] args) {
@@ -185,6 +284,9 @@ public class RepairOrderView extends JFrame {
         Border emptyBorder = BorderFactory.createLineBorder(Color.white);
         addButton = new JButton();
         addButton.setBorder(emptyBorder);
+
+        statusBtn = new JButton();
+        statusBtn.setBorder(emptyBorder);
 
         deleteButton = new JButton();
         deleteButton.setBorder(emptyBorder);
@@ -290,7 +392,7 @@ public class RepairOrderView extends JFrame {
         };
 
         employeeEmail = new RoundedJTextField(20);
-        employeeEmail.setText("Product code");
+        employeeEmail.setText("Employee Email");
 
         productName = new RoundedJTextField(20);
         productName.setText("Product name");
@@ -302,7 +404,7 @@ public class RepairOrderView extends JFrame {
         qty.setText("Qty");
 
         email = new RoundedJTextField(20);
-        email.setText("Email");
+        email.setText("Customer Email");
 
         description = new RoundedJTextField(20);
         description.setText("Description");
@@ -312,21 +414,16 @@ public class RepairOrderView extends JFrame {
 
         DefaultTableModel model = new DefaultTableModel();
         orders = new JTable(model);
-        orders.setBackground(new Color(43, 45, 48, 0));
-        orders.setBorder(blackline);
 
         // Create a couple of columns
         model.addColumn("Col1");
         model.addColumn("Col2");
         model.addColumn("Col3");
         model.addColumn("Col4");
+        model.addColumn("Col5");
+        model.addColumn("Col6");
 
         // Append a row
-        model.addRow(new Object[]{"Order Id", "Amount", "Date", "Email"});
-        model.addRow(new Object[]{"1", "Amount", "Date", "Email"});
-        model.addRow(new Object[]{"2", "Amount", "Date", "Email"});
-        model.addRow(new Object[]{"3", "Amount", "Date", "Email"});
-        model.addRow(new Object[]{"4", "Amount", "Date", "Email"});
 
     }
 

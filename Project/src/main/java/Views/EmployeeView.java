@@ -208,7 +208,6 @@ public class EmployeeView extends JFrame{
             ResultSet employees = employeeController.findEmployees();
             ResultSetMetaData resultSetMetaData = employees.getMetaData();
             int c = resultSetMetaData.getColumnCount();
-            System.out.println(c);
 
             DefaultTableModel model = (DefaultTableModel)orders.getModel();
             model.setRowCount(0);
