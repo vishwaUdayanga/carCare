@@ -46,6 +46,45 @@ public class RepaintOrderView extends JFrame {
     OrderController orderController;
 
     public RepaintOrderView() {
+        home.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                DashboardView dashboardView = new DashboardView();
+                dashboardView.setContentPane(dashboardView.dashboardPanel);
+                dashboardView.setTitle("Dashboard");
+                dashboardView.setSize(800, 500);
+                dashboardView.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                dashboardView.setVisible(true);
+                Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
+                dashboardView.setLocation(dim.width/2-dashboardView.getSize().width/2, dim.height/2-dashboardView.getSize().height/2);
+            }
+        });
+        employees.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                EmployeeView employeeView = new EmployeeView();
+                employeeView.setContentPane(employeeView.dashboardPanel);
+                employeeView.setTitle("Manage Employees");
+                employeeView.setSize(800, 500);
+                employeeView.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+                employeeView.setVisible(true);
+                Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
+                employeeView.setLocation(dim.width/2-employeeView.getSize().width/2, dim.height/2-employeeView.getSize().height/2);
+            }
+        });
+        sellers.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                Supplier supplier = new Supplier();
+                supplier.setContentPane(supplier.dashboardPanel);
+                supplier.setTitle("Manage Suppliers");
+                supplier.setSize(800, 500);
+                supplier.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+                supplier.setVisible(true);
+                Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
+                supplier.setLocation(dim.width/2-supplier.getSize().width/2, dim.height/2-supplier.getSize().height/2);
+            }
+        });
         updateTable();
         employeeEmail.addFocusListener(new FocusAdapter() {
             @Override

@@ -5,12 +5,11 @@ import Models.Admin;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.event.*;
 import java.awt.geom.RoundRectangle2D;
 
 public class LoginView extends JFrame {
-    private JPanel loginPanel;
+    public JPanel loginPanel;
     private JPanel gradientCover;
     private JLabel loginImg;
     private JTextField userName;
@@ -19,6 +18,38 @@ public class LoginView extends JFrame {
 
 
     public LoginView() {
+
+        userName.addFocusListener(new FocusAdapter() {
+            @Override
+            public void focusGained(FocusEvent e) {
+                if (userName.getText().equals("User Name")) {
+                    userName.setText("");
+                }
+            }
+        });
+        userName.addFocusListener(new FocusAdapter() {
+            @Override
+            public void focusLost(FocusEvent e) {
+                if (userName.getText().isEmpty()) {
+                    userName.setText("User Name");
+                }
+            }
+        });
+        password.addFocusListener(new FocusAdapter() {
+            @Override
+            public void focusGained(FocusEvent e) {
+                if (password.getText().equals("Password")) {
+                    password.setText("");
+                }
+            }
+
+            @Override
+            public void focusLost(FocusEvent e) {
+                if (password.getText().isEmpty()) {
+                    password.setText("Password");
+                }
+            }
+        });
         signInButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -40,6 +71,8 @@ public class LoginView extends JFrame {
                     dashboardView.setLocation(dim.width/2-dashboardView.getSize().width/2, dim.height/2-dashboardView.getSize().height/2);
                 } else {
                     JOptionPane.showMessageDialog(loginPanel, "Incorrect username or password", "Error", 0);
+                    userName.setText("User Name");
+                    password.setText("Password");
                 }
             }
         });
@@ -78,9 +111,11 @@ public class LoginView extends JFrame {
         icon = new ImageIcon(modified);
         loginImg = new JLabel( icon);
 
-        userName = new RoundedJTextField(20);
-        password = new RoundedJTextField(20);
+        userName = new LoginView.RoundedJTextField(20);
+        userName.setText("User Name");
 
+        password = new LoginView.RoundedJTextField(20);
+        password.setText("Password");
     }
 
     // implement a round-shaped JTextField
