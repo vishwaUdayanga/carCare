@@ -3,6 +3,7 @@ package Views;
 import Controllers.EmployeeController;
 import Controllers.OrderController;
 import Models.RepairOrder;
+import Models.SendMailWithAttachment;
 
 import javax.swing.*;
 import javax.swing.border.Border;
@@ -163,15 +164,27 @@ public class RepairOrderView extends JFrame {
                 Double amount = Double.parseDouble(servicePrice.getText());
                 String empEmail = employeeEmail.getText();
                 orderController = new OrderController();
+                boolean status = true;
 
                 RepairOrder repairOrder = orderController.addRepairOrder(customerEmail, amount, des, empEmail);
+                try {
+                    SendMailWithAttachment sendMailWithAttachment = new SendMailWithAttachment();
+                    sendMailWithAttachment.send(empEmail,"New Order","A new order has been appointed to you!");
+                }catch (Exception ex){
+                    JOptionPane.showMessageDialog(dashboardPanel, "Email is invalid", "Error", 0);
+                    status = false;
+                }
 
-                if(orderController.addRepairOrderToDatabase())
-                {
-                    JOptionPane.showMessageDialog(dashboardPanel, "Successfully Added a repair order to Database", "Sucess", 1);
-                    updateTable();
-                }else {
-                    JOptionPane.showMessageDialog(dashboardPanel, "Cannot insert a repair order to DB", "Error", 1);
+                if(status){
+                    if(orderController.addRepairOrderToDatabase())
+                    {
+                        JOptionPane.showMessageDialog(dashboardPanel, "Successfully Added a repair order to Database", "Sucess", 1);
+                        updateTable();
+                    }else {
+                        JOptionPane.showMessageDialog(dashboardPanel, "Cannot insert a repair order to DB", "Error", 1);
+                    }
+                }else{
+                    JOptionPane.showMessageDialog(dashboardPanel, "Email is invalid", "Error", 0);
                 }
 
                 employeeEmail.setText("Employee Email");
@@ -302,7 +315,7 @@ public class RepairOrderView extends JFrame {
         paying = new JPanel();
         paying.setBorder(blackline);
 
-        Image image = Toolkit.getDefaultToolkit().getImage("E:\\Education\\Year 1 sem 2\\OOP\\Group Project\\carCare\\Project\\src\\main\\java\\Views\\Images\\repair2.jpg");
+        Image image = Toolkit.getDefaultToolkit().getImage("E:\\STUDYING\\oop\\carCare\\Project\\src\\main\\java\\Views\\Images\\repair2.jpg");
         topImage = new javax.swing.JPanel() {
             protected void paintComponent(Graphics g) {
                 super.paintComponent(g);
@@ -310,7 +323,7 @@ public class RepairOrderView extends JFrame {
             }
         };
 
-        Image umbrellaImg = Toolkit.getDefaultToolkit().getImage("E:\\Education\\Year 1 sem 2\\OOP\\Group Project\\carCare\\Project\\src\\main\\java\\Views\\Images\\orderView4.png");
+        Image umbrellaImg = Toolkit.getDefaultToolkit().getImage("E:\\STUDYING\\oop\\carCare\\Project\\src\\main\\java\\Views\\Images\\orderView4.png");
 
         orderList = new javax.swing.JPanel() {
             protected void paintComponent(Graphics g) {
@@ -319,25 +332,25 @@ public class RepairOrderView extends JFrame {
             }
         };
 
-        ImageIcon homeIcon = new ImageIcon("E:\\Education\\Year 1 sem 2\\OOP\\Group Project\\carCare\\Project\\src\\main\\java\\Views\\Images\\home2.png");
+        ImageIcon homeIcon = new ImageIcon("E:\\STUDYING\\oop\\carCare\\Project\\src\\main\\java\\Views\\Images\\home2.png");
         Image homeIconImage = homeIcon.getImage();
         Image modifiedHomeIcon = homeIconImage.getScaledInstance(30, 30, Image.SCALE_SMOOTH);
         homeIcon = new ImageIcon(modifiedHomeIcon);
         home = new JLabel( homeIcon);
 
-        ImageIcon reportIcon = new ImageIcon("E:\\Education\\Year 1 sem 2\\OOP\\Group Project\\carCare\\Project\\src\\main\\java\\Views\\Images\\reports2.png");
+        ImageIcon reportIcon = new ImageIcon("E:\\STUDYING\\oop\\carCare\\Project\\src\\main\\java\\Views\\Images\\reports2.png");
         Image reportIconImage = reportIcon.getImage();
         Image modifiedReportIcon = reportIconImage.getScaledInstance(20, 20, Image.SCALE_SMOOTH);
         reportIcon = new ImageIcon(modifiedReportIcon);
         reports = new JLabel( reportIcon);
 
-        ImageIcon employeeIcon = new ImageIcon("E:\\Education\\Year 1 sem 2\\OOP\\Group Project\\carCare\\Project\\src\\main\\java\\Views\\Images\\employee1.png");
+        ImageIcon employeeIcon = new ImageIcon("E:\\STUDYING\\oop\\carCare\\Project\\src\\main\\java\\Views\\Images\\employee1.png");
         Image employeeIconImage = employeeIcon.getImage();
         Image modifiedEmployeeIcon = employeeIconImage.getScaledInstance(20, 20, Image.SCALE_SMOOTH);
         employeeIcon = new ImageIcon(modifiedEmployeeIcon);
         employees = new JLabel( employeeIcon);
 
-        ImageIcon sellerIcon = new ImageIcon("E:\\Education\\Year 1 sem 2\\OOP\\Group Project\\carCare\\Project\\src\\main\\java\\Views\\Images\\dollar.png");
+        ImageIcon sellerIcon = new ImageIcon("E:\\STUDYING\\oop\\carCare\\Project\\src\\main\\java\\Views\\Images\\dollar.png");
         Image sellerIconIconImage = sellerIcon.getImage();
         Image modifiedSellerIcon = sellerIconIconImage.getScaledInstance(20, 20, Image.SCALE_SMOOTH);
         sellerIcon = new ImageIcon(modifiedSellerIcon);
