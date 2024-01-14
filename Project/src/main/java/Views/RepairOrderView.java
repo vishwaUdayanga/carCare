@@ -223,12 +223,16 @@ public class RepairOrderView extends JFrame {
 
                 String status = model.getValueAt(selectedIndex, 3).toString();
                 String id = model.getValueAt(selectedIndex, 0).toString();
+                String customerEmail = model.getValueAt(selectedIndex,1).toString();
                 orderController = new OrderController();
 
                 if (status.equals("0")) {
                     try {
                         if(orderController.updateRepairOrderStatus(id)){
                             JOptionPane.showMessageDialog(dashboardPanel, "Repair order is ready now.", "Success", 1);
+                            SendMailWithAttachment sendMailWithAttachment = new SendMailWithAttachment();
+                            sendMailWithAttachment.send(customerEmail,"Vehicle is ready","Your vehicle has been repaired. Please come and collect your vehicle!");
+                            System.out.println("Message sent");
                             updateTable();
                         }
                         else{
@@ -316,7 +320,7 @@ public class RepairOrderView extends JFrame {
         paying = new JPanel();
         paying.setBorder(blackline);
 
-        Image image = Toolkit.getDefaultToolkit().getImage("E:\\Education\\Year 1 sem 2\\OOP\\Group Project\\carCare\\Project\\src\\main\\java\\Views\\Images\\repair2.jpg");
+        Image image = Toolkit.getDefaultToolkit().getImage("C:\\Users\\yehen\\OneDrive\\Desktop\\Education\\Documents SLIIT\\Y1 Sem2\\OOP\\OOPMain\\carCare\\Project\\src\\main\\java\\Views\\Images\\repair2.jpg");
         topImage = new javax.swing.JPanel() {
             protected void paintComponent(Graphics g) {
                 super.paintComponent(g);
@@ -324,7 +328,7 @@ public class RepairOrderView extends JFrame {
             }
         };
 
-        Image umbrellaImg = Toolkit.getDefaultToolkit().getImage("E:\\Education\\Year 1 sem 2\\OOP\\Group Project\\carCare\\Project\\src\\main\\java\\Views\\Images\\orderView4.png");
+        Image umbrellaImg = Toolkit.getDefaultToolkit().getImage("C:\\Users\\yehen\\OneDrive\\Desktop\\Education\\Documents SLIIT\\Y1 Sem2\\OOP\\OOPMain\\carCare\\Project\\src\\main\\java\\Views\\Images\\orderView4.png");
 
         orderList = new javax.swing.JPanel() {
             protected void paintComponent(Graphics g) {
@@ -333,25 +337,25 @@ public class RepairOrderView extends JFrame {
             }
         };
 
-        ImageIcon homeIcon = new ImageIcon("E:\\Education\\Year 1 sem 2\\OOP\\Group Project\\carCare\\Project\\src\\main\\java\\Views\\Images\\home2.png");
+        ImageIcon homeIcon = new ImageIcon("C:\\Users\\yehen\\OneDrive\\Desktop\\Education\\Documents SLIIT\\Y1 Sem2\\OOP\\OOPMain\\carCare\\Project\\src\\main\\java\\Views\\Images\\home2.png");
         Image homeIconImage = homeIcon.getImage();
         Image modifiedHomeIcon = homeIconImage.getScaledInstance(30, 30, Image.SCALE_SMOOTH);
         homeIcon = new ImageIcon(modifiedHomeIcon);
         home = new JLabel( homeIcon);
 
-        ImageIcon reportIcon = new ImageIcon("E:\\Education\\Year 1 sem 2\\OOP\\Group Project\\carCare\\Project\\src\\main\\java\\Views\\Images\\reports2.png");
+        ImageIcon reportIcon = new ImageIcon("C:\\Users\\yehen\\OneDrive\\Desktop\\Education\\Documents SLIIT\\Y1 Sem2\\OOP\\OOPMain\\carCare\\Project\\src\\main\\java\\Views\\Images\\reports2.png");
         Image reportIconImage = reportIcon.getImage();
         Image modifiedReportIcon = reportIconImage.getScaledInstance(20, 20, Image.SCALE_SMOOTH);
         reportIcon = new ImageIcon(modifiedReportIcon);
         reports = new JLabel( reportIcon);
 
-        ImageIcon employeeIcon = new ImageIcon("E:\\Education\\Year 1 sem 2\\OOP\\Group Project\\carCare\\Project\\src\\main\\java\\Views\\Images\\employee1.png");
+        ImageIcon employeeIcon = new ImageIcon("C:\\Users\\yehen\\OneDrive\\Desktop\\Education\\Documents SLIIT\\Y1 Sem2\\OOP\\OOPMain\\carCare\\Project\\src\\main\\java\\Views\\Images\\employee1.png");
         Image employeeIconImage = employeeIcon.getImage();
         Image modifiedEmployeeIcon = employeeIconImage.getScaledInstance(20, 20, Image.SCALE_SMOOTH);
         employeeIcon = new ImageIcon(modifiedEmployeeIcon);
         employees = new JLabel( employeeIcon);
 
-        ImageIcon sellerIcon = new ImageIcon("E:\\Education\\Year 1 sem 2\\OOP\\Group Project\\carCare\\Project\\src\\main\\java\\Views\\Images\\dollar.png");
+        ImageIcon sellerIcon = new ImageIcon("C:\\Users\\yehen\\OneDrive\\Desktop\\Education\\Documents SLIIT\\Y1 Sem2\\OOP\\OOPMain\\carCare\\Project\\src\\main\\java\\Views\\Images\\dollar.png");
         Image sellerIconIconImage = sellerIcon.getImage();
         Image modifiedSellerIcon = sellerIconIconImage.getScaledInstance(20, 20, Image.SCALE_SMOOTH);
         sellerIcon = new ImageIcon(modifiedSellerIcon);
