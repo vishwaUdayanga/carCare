@@ -14,6 +14,8 @@ import java.awt.*;
 import java.awt.event.*;
 import java.awt.geom.RoundRectangle2D;
 import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
+import java.util.Vector;
 
 import javax.swing.*;
 
@@ -47,6 +49,7 @@ public class EmployeeView extends JFrame{
 
 
     public EmployeeView() {
+        updateTable();
         productCode.addFocusListener(new FocusAdapter() {
             @Override
             public void focusGained(FocusEvent e) {
@@ -134,6 +137,7 @@ public class EmployeeView extends JFrame{
                 Employee employee = employeeController.addEmployee(employeeEmail,employeeName);
                 if(employeeController.addEmployeeToDatabase()){
                     JOptionPane.showMessageDialog(dashboardPanel, "Employee Inserted", "Success", 1);
+                    updateTable();
                 }
                 else{
                     JOptionPane.showMessageDialog(dashboardPanel, "Could not add employee", "Error", 0);
@@ -142,6 +146,92 @@ public class EmployeeView extends JFrame{
                 productName.setText("Employee Name");
             }
         });
+        orders.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                DefaultTableModel model = (DefaultTableModel)orders.getModel();
+                int selectedIndex = orders.getSelectedRow();
+
+                productCode.setText(model.getValueAt(selectedIndex, 0).toString());
+                productName.setText(model.getValueAt(selectedIndex, 1).toString());
+                super.mouseClicked(e);
+            }
+        });
+        EditBtn.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                DefaultTableModel model = (DefaultTableModel)orders.getModel();
+                int selectedIndex = orders.getSelectedRow();
+
+                String email = model.getValueAt(selectedIndex, 0).toString();
+                String name = productName.getText();
+                employeeController = new EmployeeController();
+                try {
+                    if(employeeController.updateEmployeeDB(email, name)){
+                        JOptionPane.showMessageDialog(dashboardPanel, "Employee Updated", "Success", 1);
+                        updateTable();
+                    }
+                    else{
+                        JOptionPane.showMessageDialog(dashboardPanel, "Could not update employee", "Error", 0);
+                    }
+                } catch (Exception ex) {
+                    JOptionPane.showMessageDialog(dashboardPanel, "Could not update employee", "Error", 0);
+                }
+            }
+        });
+        deleteButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                DefaultTableModel model = (DefaultTableModel)orders.getModel();
+                int selectedIndex = orders.getSelectedRow();
+
+                String email = model.getValueAt(selectedIndex, 0).toString();
+                employeeController = new EmployeeController();
+                try {
+                    if(employeeController.deleteEmployeeDB(email)){
+                        JOptionPane.showMessageDialog(dashboardPanel, "Employee deleted", "Success", 1);
+                        updateTable();
+                    }
+                    else{
+                        JOptionPane.showMessageDialog(dashboardPanel, "Could not delete employee", "Error", 0);
+                    }
+                } catch (Exception ex) {
+                    JOptionPane.showMessageDialog(dashboardPanel, "Could not delete employee", "Error", 0);
+                }
+            }
+        });
+    }
+
+    public void updateTable() {
+        employeeController = new EmployeeController();
+        try {
+            ResultSet employees = employeeController.findEmployees();
+            ResultSetMetaData resultSetMetaData = employees.getMetaData();
+            int c = resultSetMetaData.getColumnCount();
+            System.out.println(c);
+
+            DefaultTableModel model = (DefaultTableModel)orders.getModel();
+            model.setRowCount(0);
+            Vector vector = new Vector();
+
+            for (int i=1; i<=c; i++) {
+                vector.add(employees.getString("email"));
+                vector.add(employees.getString("name"));
+            }
+            model.addRow(vector);
+            while (employees.next()) {
+                Vector vector1 = new Vector();
+
+                for (int i=1; i<=c; i++) {
+                    vector1.add(employees.getString("email"));
+                    vector1.add(employees.getString("name"));
+                }
+                model.addRow(vector1);
+            }
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(dashboardPanel, "Could not fetch employee details", "Error", 0);
+            System.out.println(ex.getMessage());
+        }
     }
 
     public static void main(String[] args) {
@@ -177,7 +267,7 @@ public class EmployeeView extends JFrame{
         paying = new JPanel();
         paying.setBorder(blackline);
 
-        Image image = Toolkit.getDefaultToolkit().getImage("C:\\OOP\\carCare\\Project\\src\\main\\java\\Views\\Images\\orderView3.jpg");
+        Image image = Toolkit.getDefaultToolkit().getImage("E:\\Education\\Year 1 sem 2\\OOP\\Group Project\\carCare\\Project\\src\\main\\java\\Views\\Images\\orderView3.jpg");
         topImage = new javax.swing.JPanel() {
             protected void paintComponent(Graphics g) {
                 super.paintComponent(g);
@@ -185,7 +275,7 @@ public class EmployeeView extends JFrame{
             }
         };
 
-        Image umbrellaImg = Toolkit.getDefaultToolkit().getImage("C:\\OOP\\carCare\\Project\\src\\main\\java\\Views\\Images\\orderView4.png");
+        Image umbrellaImg = Toolkit.getDefaultToolkit().getImage("E:\\Education\\Year 1 sem 2\\OOP\\Group Project\\carCare\\Project\\src\\main\\java\\Views\\Images\\orderView4.png");
 
         orderList = new javax.swing.JPanel() {
             protected void paintComponent(Graphics g) {
@@ -194,25 +284,25 @@ public class EmployeeView extends JFrame{
             }
         };
 
-        ImageIcon homeIcon = new ImageIcon("C:\\OOP\\carCare\\Project\\src\\main\\java\\Views\\Images\\home2.png");
+        ImageIcon homeIcon = new ImageIcon("E:\\Education\\Year 1 sem 2\\OOP\\Group Project\\carCare\\Project\\src\\main\\java\\Views\\Images\\home2.png");
         Image homeIconImage = homeIcon.getImage();
         Image modifiedHomeIcon = homeIconImage.getScaledInstance(30, 30, Image.SCALE_SMOOTH);
         homeIcon = new ImageIcon(modifiedHomeIcon);
         home = new JLabel( homeIcon);
 
-        ImageIcon reportIcon = new ImageIcon("C:\\OOP\\carCare\\Project\\src\\main\\java\\Views\\Images\\reports2.png");
+        ImageIcon reportIcon = new ImageIcon("E:\\Education\\Year 1 sem 2\\OOP\\Group Project\\carCare\\Project\\src\\main\\java\\Views\\Images\\reports2.png");
         Image reportIconImage = reportIcon.getImage();
         Image modifiedReportIcon = reportIconImage.getScaledInstance(20, 20, Image.SCALE_SMOOTH);
         reportIcon = new ImageIcon(modifiedReportIcon);
         reports = new JLabel( reportIcon);
 
-        ImageIcon employeeIcon = new ImageIcon("C:\\OOP\\carCare\\Project\\src\\main\\java\\Views\\Images\\employee1.png");
+        ImageIcon employeeIcon = new ImageIcon("E:\\Education\\Year 1 sem 2\\OOP\\Group Project\\carCare\\Project\\src\\main\\java\\Views\\Images\\employee1.png");
         Image employeeIconImage = employeeIcon.getImage();
         Image modifiedEmployeeIcon = employeeIconImage.getScaledInstance(20, 20, Image.SCALE_SMOOTH);
         employeeIcon = new ImageIcon(modifiedEmployeeIcon);
         employees = new JLabel( employeeIcon);
 
-        ImageIcon sellerIcon = new ImageIcon("C:\\OOP\\carCare\\Project\\src\\main\\java\\Views\\Images\\dollar.png");
+        ImageIcon sellerIcon = new ImageIcon("E:\\Education\\Year 1 sem 2\\OOP\\Group Project\\carCare\\Project\\src\\main\\java\\Views\\Images\\dollar.png");
         Image sellerIconIconImage = sellerIcon.getImage();
         Image modifiedSellerIcon = sellerIconIconImage.getScaledInstance(20, 20, Image.SCALE_SMOOTH);
         sellerIcon = new ImageIcon(modifiedSellerIcon);
@@ -288,11 +378,8 @@ public class EmployeeView extends JFrame{
         // Create a couple of columns
         model.addColumn("Col1");
         model.addColumn("Col2");
-        model.addColumn("Col3");
-        model.addColumn("Col4");
 
         // Append a row
-        model.addRow(new Object[]{"Product id", "Name", "Price", "QTY"});
 
     }
 
