@@ -5,6 +5,8 @@ import Models.Supplier;
 import ServiceLayer.EmployeeService;
 import ServiceLayer.SupplierService;
 
+import java.sql.ResultSet;
+
 public class SupplierController {
     Supplier supplier;
     SupplierService service;
@@ -22,5 +24,20 @@ public class SupplierController {
     public boolean addSupplerToDatabase()
     {
         return service.addSupplier(supplier);
+    }
+
+    public ResultSet findSuppliers() {
+        ResultSet resultSet = service.getSupplierDetails();
+        return resultSet;
+    }
+
+    public boolean updateSupplierDB(String email, String name)
+    {
+        return service.updateSupplier(email, name);
+    }
+
+    public boolean deleteSupplierDB(String email)
+    {
+        return service.deleteSupplier(email);
     }
 }

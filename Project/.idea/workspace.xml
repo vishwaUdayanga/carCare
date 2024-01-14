@@ -5,31 +5,44 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8376f35a-bac5-4d28-a5a4-4d0afab81109" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/Controllers/ProvideController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/Models/Provide.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ServiceLayer/ProvideService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/Views/ProvideView.form" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/Views/ProvideView.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/artifacts/Project_jar/Project.jar" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/Project_jar/Project.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Controllers/OrderController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Controllers/OrderController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ServiceLayer/OrderService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ServiceLayer/OrderService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Views/RepaintOrderView.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Views/RepaintOrderView.form" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Views/RepaintOrderView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Views/RepaintOrderView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Views/RepairOrderView.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Views/RepairOrderView.form" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Views/RepairOrderView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Views/RepairOrderView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/ServiceLayer/OrderService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/ServiceLayer/OrderService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Views/RepaintOrderView$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Views/RepaintOrderView$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Views/RepaintOrderView$10.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Views/RepaintOrderView$10.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Views/RepaintOrderView$11.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Views/RepaintOrderView$11.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Views/RepaintOrderView$12.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Views/RepaintOrderView$12.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Views/RepaintOrderView$13.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Views/RepaintOrderView$13.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Views/RepaintOrderView$14.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Views/RepaintOrderView$14.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Views/RepaintOrderView$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Views/RepaintOrderView$2.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Views/RepaintOrderView$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Views/RepaintOrderView$3.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Views/RepaintOrderView$4.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Views/RepaintOrderView$4.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Views/RepaintOrderView$5.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Views/RepaintOrderView$5.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Views/RepaintOrderView$6.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Views/RepaintOrderView$6.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Views/RepaintOrderView$7.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Views/RepaintOrderView$7.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Views/RepaintOrderView$8.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Views/RepaintOrderView$8.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Views/RepaintOrderView$9.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Views/RepaintOrderView$9.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Views/RepaintOrderView$RoundedJTextField.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Views/RepaintOrderView$RoundedJTextField.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Views/RepairOrderView.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Views/RepairOrderView.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Controllers/SparePartsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Controllers/SparePartsController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Controllers/SupplierController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Controllers/SupplierController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ServiceLayer/SparePartsService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ServiceLayer/SparePartsService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ServiceLayer/SupplierService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ServiceLayer/SupplierService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Views/SpareParts.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Views/SpareParts.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Views/Supplier.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Views/Supplier.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Controllers/SupplierController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Controllers/SupplierController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/ServiceLayer/SparePartsService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/ServiceLayer/SparePartsService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/ServiceLayer/SupplierService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/ServiceLayer/SupplierService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Views/SpareParts$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Views/SpareParts$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Views/SpareParts$10.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Views/SpareParts$10.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Views/SpareParts$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Views/SpareParts$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Views/SpareParts$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Views/SpareParts$3.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Views/SpareParts$4.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Views/SpareParts$4.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Views/SpareParts$5.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Views/SpareParts$5.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Views/SpareParts$6.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Views/SpareParts$6.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Views/SpareParts$7.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Views/SpareParts$7.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Views/SpareParts$8.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Views/SpareParts$8.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Views/SpareParts$9.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Views/SpareParts$9.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Views/SpareParts$RoundedJTextField.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Views/SpareParts$RoundedJTextField.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Views/Supplier$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Views/Supplier$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Views/Supplier$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Views/Supplier$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Views/Supplier$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Views/Supplier$3.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Views/Supplier$4.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Views/Supplier$4.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Views/Supplier$5.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Views/Supplier$5.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Views/Supplier$6.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Views/Supplier$6.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Views/Supplier$7.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Views/Supplier$7.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Views/Supplier$8.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Views/Supplier$8.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Views/Supplier$9.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Views/Supplier$9.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Views/Supplier$RoundedJTextField.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Views/Supplier$RoundedJTextField.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Views/Supplier.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Views/Supplier.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

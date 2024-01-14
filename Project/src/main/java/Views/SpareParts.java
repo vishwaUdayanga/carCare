@@ -7,11 +7,11 @@ import javax.swing.*;
 import javax.swing.border.Border;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.FocusAdapter;
-import java.awt.event.FocusEvent;
+import java.awt.event.*;
 import java.awt.geom.RoundRectangle2D;
+import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
+import java.util.Vector;
 
 public class SpareParts extends JFrame {
     private JPanel dashboardPanel;
@@ -38,6 +38,7 @@ public class SpareParts extends JFrame {
     SparePartsController sparePartsController;
 
     public SpareParts() {
+        updateTable();
         productCode.addFocusListener(new FocusAdapter() {
             @Override
             public void focusGained(FocusEvent e) {
@@ -96,6 +97,7 @@ public class SpareParts extends JFrame {
                 Models.SparePart sparePart = sparePartsController.addItem(itemName,itemBrand, itemPrice);
                 if(sparePartsController.addSparePartsToDB()){
                     JOptionPane.showMessageDialog(dashboardPanel, "Spare part Inserted", "Success", 1);
+                    updateTable();
                 }
                 else{
                     JOptionPane.showMessageDialog(dashboardPanel, "Could not add spare part", "Error", 0);
@@ -105,93 +107,102 @@ public class SpareParts extends JFrame {
                 price.setText("Price");
             }
         });
-//        orders.addMouseListener(new MouseAdapter() {
-//            @Override
-//            public void mouseClicked(MouseEvent e) {
-//                DefaultTableModel model = (DefaultTableModel)orders.getModel();
-//                int selectedIndex = orders.getSelectedRow();
-//
-//                productCode.setText(model.getValueAt(selectedIndex, 0).toString());
-//                productName.setText(model.getValueAt(selectedIndex, 1).toString());
-//                super.mouseClicked(e);
-//            }
-//        });
-//        EditBtn.addActionListener(new ActionListener() {
-//            @Override
-//            public void actionPerformed(ActionEvent e) {
-//                DefaultTableModel model = (DefaultTableModel)orders.getModel();
-//                int selectedIndex = orders.getSelectedRow();
-//
-//                String email = model.getValueAt(selectedIndex, 0).toString();
-//                String name = productName.getText();
-//                employeeController = new EmployeeController();
-//                try {
-//                    if(employeeController.updateEmployeeDB(email, name)){
-//                        JOptionPane.showMessageDialog(dashboardPanel, "Employee Updated", "Success", 1);
-//                        updateTable();
-//                    }
-//                    else{
-//                        JOptionPane.showMessageDialog(dashboardPanel, "Could not update employee", "Error", 0);
-//                    }
-//                } catch (Exception ex) {
-//                    JOptionPane.showMessageDialog(dashboardPanel, "Could not update employee", "Error", 0);
-//                }
-//            }
-//        });
-//        deleteButton.addActionListener(new ActionListener() {
-//            @Override
-//            public void actionPerformed(ActionEvent e) {
-//                DefaultTableModel model = (DefaultTableModel)orders.getModel();
-//                int selectedIndex = orders.getSelectedRow();
-//
-//                String email = model.getValueAt(selectedIndex, 0).toString();
-//                employeeController = new EmployeeController();
-//                try {
-//                    if(employeeController.deleteEmployeeDB(email)){
-//                        JOptionPane.showMessageDialog(dashboardPanel, "Employee deleted", "Success", 1);
-//                        updateTable();
-//                    }
-//                    else{
-//                        JOptionPane.showMessageDialog(dashboardPanel, "Could not delete employee", "Error", 0);
-//                    }
-//                } catch (Exception ex) {
-//                    JOptionPane.showMessageDialog(dashboardPanel, "Could not delete employee", "Error", 0);
-//                }
-//            }
-//        });
+        orders.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                DefaultTableModel model = (DefaultTableModel)orders.getModel();
+                int selectedIndex = orders.getSelectedRow();
+
+                productCode.setText(model.getValueAt(selectedIndex, 1).toString());
+                productName.setText(model.getValueAt(selectedIndex, 2).toString());
+                price.setText(model.getValueAt(selectedIndex, 3).toString());
+                super.mouseClicked(e);
+            }
+        });
+        EditBtn.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                DefaultTableModel model = (DefaultTableModel)orders.getModel();
+                int selectedIndex = orders.getSelectedRow();
+
+                int itemId = Integer.parseInt(model.getValueAt(selectedIndex, 0).toString());
+                String itemName = productCode.getText();
+                String itemBrand = productName.getText();
+                Double itemPrice = Double.parseDouble(price.getText());
+                sparePartsController = new SparePartsController();
+                try {
+                    if(sparePartsController.updateSparePart(itemId, itemName, itemBrand, itemPrice)){
+                        JOptionPane.showMessageDialog(dashboardPanel, "Spare part updated", "Success", 1);
+                        updateTable();
+                    }
+                    else{
+                        JOptionPane.showMessageDialog(dashboardPanel, "Could not update spare parts", "Error", 0);
+                    }
+                } catch (Exception ex) {
+                    JOptionPane.showMessageDialog(dashboardPanel, "Could not update spare parts", "Error", 0);
+                }
+            }
+        });
+        deleteButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                DefaultTableModel model = (DefaultTableModel)orders.getModel();
+                int selectedIndex = orders.getSelectedRow();
+
+                int itemId = Integer.parseInt(model.getValueAt(selectedIndex, 0).toString());
+                sparePartsController = new SparePartsController();
+                try {
+                    if(sparePartsController.deleteSparePart(itemId)){
+                        JOptionPane.showMessageDialog(dashboardPanel, "Spare part deleted", "Success", 1);
+                        updateTable();
+                    }
+                    else{
+                        JOptionPane.showMessageDialog(dashboardPanel, "Could not delete spare part", "Error", 0);
+                    }
+                } catch (Exception ex) {
+                    JOptionPane.showMessageDialog(dashboardPanel, "Could not delete spare part", "Error", 0);
+                }
+            }
+        });
     }
 
-//    public void updateTable() {
-//        employeeController = new EmployeeController();
-//        try {
-//            ResultSet employees = employeeController.findEmployees();
-//            ResultSetMetaData resultSetMetaData = employees.getMetaData();
-//            int c = resultSetMetaData.getColumnCount();
-//            System.out.println(c);
-//
-//            DefaultTableModel model = (DefaultTableModel)orders.getModel();
-//            model.setRowCount(0);
-//            Vector vector = new Vector();
-//
-//            for (int i=1; i<=c; i++) {
-//                vector.add(employees.getString("email"));
-//                vector.add(employees.getString("name"));
-//            }
-//            model.addRow(vector);
-//            while (employees.next()) {
-//                Vector vector1 = new Vector();
-//
-//                for (int i=1; i<=c; i++) {
-//                    vector1.add(employees.getString("email"));
-//                    vector1.add(employees.getString("name"));
-//                }
-//                model.addRow(vector1);
-//            }
-//        } catch (Exception ex) {
-//            JOptionPane.showMessageDialog(dashboardPanel, "Could not fetch employee details", "Error", 0);
-//            System.out.println(ex.getMessage());
-//        }
-//    }
+    public void updateTable() {
+        sparePartsController = new SparePartsController();
+        try {
+            ResultSet items = sparePartsController.findSpareParts();
+            ResultSetMetaData resultSetMetaData = items.getMetaData();
+            int c = resultSetMetaData.getColumnCount();
+            System.out.println(c);
+
+            DefaultTableModel model = (DefaultTableModel)orders.getModel();
+            model.setRowCount(0);
+            Vector vector = new Vector();
+
+            for (int i=1; i<=c; i++) {
+                vector.add(items.getString("id"));
+                vector.add(items.getString("name"));
+                vector.add(items.getString("brand"));
+                vector.add(items.getString("price"));
+                vector.add(items.getString("qty"));
+            }
+            model.addRow(vector);
+            while (items.next()) {
+                Vector vector1 = new Vector();
+
+                for (int i=1; i<=c; i++) {
+                    vector1.add(items.getString("id"));
+                    vector1.add(items.getString("name"));
+                    vector1.add(items.getString("brand"));
+                    vector1.add(items.getString("price"));
+                    vector1.add(items.getString("qty"));
+                }
+                model.addRow(vector1);
+            }
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(dashboardPanel, "Could not fetch spare parts details", "Error", 0);
+            System.out.println(ex.getMessage());
+        }
+    }
 
     public static void main(String[] args) {
         SpareParts spareParts = new SpareParts();
@@ -325,6 +336,9 @@ public class SpareParts extends JFrame {
         // Create a couple of columns
         model.addColumn("Col1");
         model.addColumn("Col2");
+        model.addColumn("Col3");
+        model.addColumn("Col4");
+        model.addColumn("Col5");
 
         // Append a row
 

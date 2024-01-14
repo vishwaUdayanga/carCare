@@ -5,6 +5,8 @@ import Models.Supplier;
 import ServiceLayer.SparePartsService;
 import ServiceLayer.SupplierService;
 
+import java.sql.ResultSet;
+
 public class SparePartsController {
     SparePart sparePart;
     SparePartsService service;
@@ -22,5 +24,19 @@ public class SparePartsController {
     public boolean addSparePartsToDB()
     {
         return service.addItems(sparePart);
+    }
+
+    public ResultSet findSpareParts() {
+        ResultSet resultSet = service.getSparePartsDetails();
+        return resultSet;
+    }
+
+    public boolean updateSparePart(int id, String name, String brand, Double price) {
+        return service.updateSparePartDB(id, name, brand, price);
+    }
+
+    public boolean deleteSparePart(int id)
+    {
+        return service.deleteSparePartDB(id);
     }
 }

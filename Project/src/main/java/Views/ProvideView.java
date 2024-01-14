@@ -1,8 +1,7 @@
 package Views;
 
-import Controllers.EmployeeController;
+import Controllers.ProvideController;
 import Controllers.SupplierController;
-import Models.Employee;
 
 import javax.swing.*;
 import javax.swing.border.Border;
@@ -14,7 +13,7 @@ import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.util.Vector;
 
-public class Supplier extends JFrame {
+public class ProvideView extends JFrame {
     private JPanel dashboardPanel;
     private JPanel header;
     private JPanel headerInner;
@@ -36,9 +35,9 @@ public class Supplier extends JFrame {
     private JButton EditBtn;
     private JTextField price;
 
-    SupplierController supplierController;
+    ProvideController provideController;
 
-    public Supplier() {
+    public ProvideView() {
         updateTable();
         productCode.addFocusListener(new FocusAdapter() {
             @Override
@@ -59,7 +58,7 @@ public class Supplier extends JFrame {
         productName.addFocusListener(new FocusAdapter() {
             @Override
             public void focusGained(FocusEvent e) {
-                if (productName.getText().equals("Supplier Name")) {
+                if (productName.getText().equals("Product Id")) {
                     productName.setText("");
                 }
             }
@@ -67,127 +66,166 @@ public class Supplier extends JFrame {
             @Override
             public void focusLost(FocusEvent e) {
                 if (productName.getText().isEmpty()) {
-                    productName.setText("Supplier Name");
+                    productName.setText("Product Id");
                 }
             }
         });
 
-        orders.addMouseListener(new MouseAdapter() {
+        price.addFocusListener(new FocusAdapter() {
             @Override
-            public void mouseClicked(MouseEvent e) {
-                DefaultTableModel model = (DefaultTableModel)orders.getModel();
-                int selectedIndex = orders.getSelectedRow();
+            public void focusGained(FocusEvent e) {
+                if (price.getText().equals("Qty")) {
+                    price.setText("");
+                }
+            }
 
-                productCode.setText(model.getValueAt(selectedIndex, 0).toString());
-                productName.setText(model.getValueAt(selectedIndex, 1).toString());
-                super.mouseClicked(e);
+            @Override
+            public void focusLost(FocusEvent e) {
+                if (price.getText().isEmpty()) {
+                    price.setText("Qty");
+                }
             }
         });
+
+//        orders.addMouseListener(new MouseAdapter() {
+//            @Override
+//            public void mouseClicked(MouseEvent e) {
+//                DefaultTableModel model = (DefaultTableModel)orders.getModel();
+//                int selectedIndex = orders.getSelectedRow();
+//
+//                productCode.setText(model.getValueAt(selectedIndex, 0).toString());
+//                productName.setText(model.getValueAt(selectedIndex, 1).toString());
+//                super.mouseClicked(e);
+//            }
+//        });
 
         addButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 String supplierEmail = productCode.getText();
-                String supplierName = productName.getText();
-                supplierController = new SupplierController();
-                Models.Supplier supplier = supplierController.addSupplier(supplierEmail,supplierName);
-                if(supplierController.addSupplerToDatabase()){
-                    JOptionPane.showMessageDialog(dashboardPanel, "Supplier Inserted", "Success", 1);
-                    updateTable();
+                int productId = Integer.parseInt(productName.getText());
+                int qty = Integer.parseInt(price.getText());
+                boolean status = true;
+                provideController = new ProvideController();
+                ResultSet resultSet1 = provideController.findProductById(productId);
+                ResultSet resultSet2 = provideController.findSupplierByEmail(supplierEmail);
+                try {
+                    String name = resultSet1.getString("name");
+                    String name1 = resultSet2.getString("name");
+
+                } catch (Exception ex) {
+                    JOptionPane.showMessageDialog(dashboardPanel, "Could not find the product id or supplier email", "Error", 0);
+                    status = false;
                 }
-                else{
-                    JOptionPane.showMessageDialog(dashboardPanel, "Could not add supplier", "Error", 0);
+
+                if (status) {
+                    Models.Provide provide = provideController.addProvide(supplierEmail,productId, qty);
+                    if(provideController.addProvideToDB()){
+                        JOptionPane.showMessageDialog(dashboardPanel, "Order completed", "Success", 1);
+                        provideController.updateQty(productId, qty);
+
+                        updateTable();
+                    }
+                    else{
+                        JOptionPane.showMessageDialog(dashboardPanel, "Could not add an order", "Error", 0);
+                    }
                 }
                 productCode.setText("Supplier Email");
-                productName.setText("Supplier Name");
+                productName.setText("Product Id");
+                price.setText("Qty");
             }
         });
-        EditBtn.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                DefaultTableModel model = (DefaultTableModel)orders.getModel();
-                int selectedIndex = orders.getSelectedRow();
-
-                String email = model.getValueAt(selectedIndex, 0).toString();
-                String name = productName.getText();
-                supplierController = new SupplierController();
-                try {
-                    if(supplierController.updateSupplierDB(email, name)){
-                        JOptionPane.showMessageDialog(dashboardPanel, "Supplier Updated", "Success", 1);
-                        updateTable();
-                    }
-                    else{
-                        JOptionPane.showMessageDialog(dashboardPanel, "Could not update supplier", "Error", 0);
-                    }
-                } catch (Exception ex) {
-                    JOptionPane.showMessageDialog(dashboardPanel, "Could not update supplier", "Error", 0);
-                }
-            }
-        });
-        deleteButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                DefaultTableModel model = (DefaultTableModel)orders.getModel();
-                int selectedIndex = orders.getSelectedRow();
-
-                String email = model.getValueAt(selectedIndex, 0).toString();
-                supplierController = new SupplierController();
-                try {
-                    if(supplierController.deleteSupplierDB(email)){
-                        JOptionPane.showMessageDialog(dashboardPanel, "Supplier deleted", "Success", 1);
-                        updateTable();
-                    }
-                    else{
-                        JOptionPane.showMessageDialog(dashboardPanel, "Could not delete Supplier", "Error", 0);
-                    }
-                } catch (Exception ex) {
-                    JOptionPane.showMessageDialog(dashboardPanel, "Could not delete Supplier", "Error", 0);
-                }
-            }
-        });
+//        EditBtn.addActionListener(new ActionListener() {
+//            @Override
+//            public void actionPerformed(ActionEvent e) {
+//                DefaultTableModel model = (DefaultTableModel)orders.getModel();
+//                int selectedIndex = orders.getSelectedRow();
+//
+//                String email = model.getValueAt(selectedIndex, 0).toString();
+//                String name = productName.getText();
+//                supplierController = new SupplierController();
+//                try {
+//                    if(supplierController.updateSupplierDB(email, name)){
+//                        JOptionPane.showMessageDialog(dashboardPanel, "Supplier Updated", "Success", 1);
+//                        updateTable();
+//                    }
+//                    else{
+//                        JOptionPane.showMessageDialog(dashboardPanel, "Could not update supplier", "Error", 0);
+//                    }
+//                } catch (Exception ex) {
+//                    JOptionPane.showMessageDialog(dashboardPanel, "Could not update supplier", "Error", 0);
+//                }
+//            }
+//        });
+//        deleteButton.addActionListener(new ActionListener() {
+//            @Override
+//            public void actionPerformed(ActionEvent e) {
+//                DefaultTableModel model = (DefaultTableModel)orders.getModel();
+//                int selectedIndex = orders.getSelectedRow();
+//
+//                String email = model.getValueAt(selectedIndex, 0).toString();
+//                supplierController = new SupplierController();
+//                try {
+//                    if(supplierController.deleteSupplierDB(email)){
+//                        JOptionPane.showMessageDialog(dashboardPanel, "Supplier deleted", "Success", 1);
+//                        updateTable();
+//                    }
+//                    else{
+//                        JOptionPane.showMessageDialog(dashboardPanel, "Could not delete Supplier", "Error", 0);
+//                    }
+//                } catch (Exception ex) {
+//                    JOptionPane.showMessageDialog(dashboardPanel, "Could not delete Supplier", "Error", 0);
+//                }
+//            }
+//        });
     }
 
     public void updateTable() {
-        supplierController = new SupplierController();
+        provideController = new ProvideController();
         try {
-            ResultSet employees = supplierController.findSuppliers();
-            ResultSetMetaData resultSetMetaData = employees.getMetaData();
+            ResultSet provideOrders = provideController.findOrders();
+            ResultSetMetaData resultSetMetaData = provideOrders.getMetaData();
             int c = resultSetMetaData.getColumnCount();
-            System.out.println(c);
 
             DefaultTableModel model = (DefaultTableModel)orders.getModel();
             model.setRowCount(0);
             Vector vector = new Vector();
 
             for (int i=1; i<=c; i++) {
-                vector.add(employees.getString("email"));
-                vector.add(employees.getString("name"));
+                vector.add(provideOrders.getString("id"));
+                vector.add(provideOrders.getString("supplier_email"));
+                vector.add(provideOrders.getString("product_id"));
+                vector.add(provideOrders.getString("date"));
+                vector.add(provideOrders.getString("qty"));
             }
             model.addRow(vector);
-            while (employees.next()) {
+            while (provideOrders.next()) {
                 Vector vector1 = new Vector();
 
                 for (int i=1; i<=c; i++) {
-                    vector1.add(employees.getString("email"));
-                    vector1.add(employees.getString("name"));
+                    vector1.add(provideOrders.getString("id"));
+                    vector1.add(provideOrders.getString("supplier_email"));
+                    vector1.add(provideOrders.getString("product_id"));
+                    vector1.add(provideOrders.getString("date"));
+                    vector1.add(provideOrders.getString("qty"));
                 }
                 model.addRow(vector1);
             }
         } catch (Exception ex) {
-            JOptionPane.showMessageDialog(dashboardPanel, "Could not fetch supplier details", "Error", 0);
+            JOptionPane.showMessageDialog(dashboardPanel, "Could not fetch order details", "Error", 0);
             System.out.println(ex.getMessage());
         }
     }
 
     public static void main(String[] args) {
-        Supplier supplier = new Supplier();
-        supplier.setContentPane(supplier.dashboardPanel);
-        supplier.setTitle("Manage Suppliers");
-        supplier.setSize(800, 500);
-        supplier.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        supplier.setVisible(true);
+        ProvideView provideView = new ProvideView();
+        provideView.setContentPane(provideView.dashboardPanel);
+        provideView.setTitle("Manage Provides");
+        provideView.setSize(800, 500);
+        provideView.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        provideView.setVisible(true);
         Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
-        supplier.setLocation(dim.width/2-supplier.getSize().width/2, dim.height/2-supplier.getSize().height/2);
+        provideView.setLocation(dim.width/2-provideView.getSize().width/2, dim.height/2-provideView.getSize().height/2);
     }
 
     private void createUIComponents() {
@@ -296,11 +334,14 @@ public class Supplier extends JFrame {
             }
         };
 
-        productCode = new Supplier.RoundedJTextField(20);
+        productCode = new ProvideView.RoundedJTextField(20);
         productCode.setText("Supplier Email");
 
-        productName = new Supplier.RoundedJTextField(20);
-        productName.setText("Supplier Name");
+        productName = new ProvideView.RoundedJTextField(20);
+        productName.setText("Product Id");
+
+        price = new ProvideView.RoundedJTextField(20);
+        price.setText("Qty");
 
 
 
@@ -310,6 +351,9 @@ public class Supplier extends JFrame {
         // Create a couple of columns
         model.addColumn("Col1");
         model.addColumn("Col2");
+        model.addColumn("Col3");
+        model.addColumn("Col4");
+        model.addColumn("Col5");
 
         // Append a row
 
