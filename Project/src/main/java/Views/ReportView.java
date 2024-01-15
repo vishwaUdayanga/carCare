@@ -46,6 +46,7 @@ public class ReportView extends JFrame  {
         home.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
+                ReportView.super.dispose();
                 DashboardView dashboardView = new DashboardView();
                 dashboardView.setContentPane(dashboardView.dashboardPanel);
                 dashboardView.setTitle("Dashboard");
@@ -59,6 +60,7 @@ public class ReportView extends JFrame  {
         employees.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
+                ReportView.super.dispose();
                 EmployeeView employeeView = new EmployeeView();
                 employeeView.setContentPane(employeeView.dashboardPanel);
                 employeeView.setTitle("Manage Employees");
@@ -72,6 +74,7 @@ public class ReportView extends JFrame  {
         sellers.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
+                ReportView.super.dispose();
                 Supplier supplier = new Supplier();
                 supplier.setContentPane(supplier.dashboardPanel);
                 supplier.setTitle("Manage Suppliers");
@@ -80,6 +83,20 @@ public class ReportView extends JFrame  {
                 supplier.setVisible(true);
                 Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
                 supplier.setLocation(dim.width/2-supplier.getSize().width/2, dim.height/2-supplier.getSize().height/2);
+            }
+        });
+        reports.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                ReportView.super.dispose();
+                ReportView reportView = new ReportView();
+                reportView.setContentPane(reportView.dashboardPanel);
+                reportView.setTitle("Monthly Reports");
+                reportView.setSize(800, 500);
+                reportView.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+                reportView.setVisible(true);
+                Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
+                reportView.setLocation(dim.width/2-reportView.getSize().width/2, dim.height/2-reportView.getSize().height/2);
             }
         });
 
@@ -204,10 +221,10 @@ public class ReportView extends JFrame  {
                             vector1.add(orderDetails.getString("date"));
                         }
                         model.addRow(vector1);
-                        ResultSet totalCount = reportController.findAllRepaintOrderDetails();
-                        ResultSetMetaData resultSetMetaData1 = totalCount.getMetaData();
-                        Total.setText("Rs : "+totalCount.getString("count"));
                     }
+                    ResultSet totalCount = reportController.findAllRepaintOrderDetails();
+                    ResultSetMetaData resultSetMetaData1 = totalCount.getMetaData();
+                    Total.setText("Rs : "+totalCount.getString("count"));
                 } catch (Exception ex) {
                     JOptionPane.showMessageDialog(dashboardPanel, "Could not fetch employee details", "Error", 0);
                     System.out.println(ex.getMessage());
@@ -268,10 +285,10 @@ public class ReportView extends JFrame  {
                             vector1.add(orderDetails.getString("date"));
                         }
                         model.addRow(vector1);
-                        ResultSet totalCount = reportController.findAllOrderDetails();
-                        ResultSetMetaData resultSetMetaData1 = totalCount.getMetaData();
-                        Total.setText("Rs : "+totalCount.getString("count"));
                     }
+                    ResultSet totalCount = reportController.findAllOrderDetails();
+                    ResultSetMetaData resultSetMetaData1 = totalCount.getMetaData();
+                    Total.setText("Rs : "+totalCount.getString("count"));
                 } catch (Exception ex) {
                     JOptionPane.showMessageDialog(dashboardPanel, "Could not fetch order details", "Error", 0);
                     System.out.println(ex.getMessage());
@@ -319,10 +336,10 @@ public class ReportView extends JFrame  {
                             vector1.add(orderDetails.getString("date"));
                         }
                         model.addRow(vector1);
-                        ResultSet totalCount = reportController.findAllRepairOrderDetails();
-                        ResultSetMetaData resultSetMetaData1 = totalCount.getMetaData();
-                        Total.setText("Rs : "+totalCount.getString("count"));
                     }
+                    ResultSet totalCount = reportController.findAllRepairOrderDetails();
+                    ResultSetMetaData resultSetMetaData1 = totalCount.getMetaData();
+                    Total.setText("Rs : "+totalCount.getString("count"));
                 } catch (Exception ex) {
                     JOptionPane.showMessageDialog(dashboardPanel, "Could not fetch Repair orders", "Error", 0);
                     System.out.println(ex.getMessage());
@@ -360,10 +377,10 @@ public class ReportView extends JFrame  {
                     vector1.add(orderDetails.getString("date"));
                 }
                 model.addRow(vector1);
-                ResultSet totalCount = reportController.findAllOrderDetails();
-                ResultSetMetaData resultSetMetaData1 = totalCount.getMetaData();
-                Total.setText("Rs : "+totalCount.getString("count"));
             }
+            ResultSet totalCount = reportController.findAllOrderDetails();
+            ResultSetMetaData resultSetMetaData1 = totalCount.getMetaData();
+            Total.setText("Rs : "+totalCount.getString("count"));
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(dashboardPanel, "Could not fetch employee details", "Error", 0);
             System.out.println(ex.getMessage());
@@ -403,7 +420,7 @@ public class ReportView extends JFrame  {
 //        paying = new JPanel();
 //        paying.setBorder(blackline);
 
-        Image image = Toolkit.getDefaultToolkit().getImage("D:\\SLIIT\\Degree\\1Y\\s2\\OOP\\GrOUP_PROJECT\\carCare\\Project\\src\\main\\java\\Views\\Images\\orderView3.jpg");
+        Image image = Toolkit.getDefaultToolkit().getImage("E:\\Education\\Year 1 sem 2\\OOP\\Group Project\\carCare\\Project\\src\\main\\java\\Views\\Images\\orderView3.jpg");
         topImage = new javax.swing.JPanel() {
             protected void paintComponent(Graphics g) {
                 super.paintComponent(g);
@@ -411,7 +428,7 @@ public class ReportView extends JFrame  {
             }
         };
 
-        Image umbrellaImg = Toolkit.getDefaultToolkit().getImage("D:\\SLIIT\\Degree\\1Y\\s2\\OOP\\GrOUP_PROJECT\\carCare\\Project\\src\\main\\java\\Views\\Images\\orderView4.png");
+        Image umbrellaImg = Toolkit.getDefaultToolkit().getImage("E:\\Education\\Year 1 sem 2\\OOP\\Group Project\\carCare\\Project\\src\\main\\java\\Views\\Images\\orderView4.png");
 
         orderList = new javax.swing.JPanel() {
             protected void paintComponent(Graphics g) {
@@ -420,25 +437,25 @@ public class ReportView extends JFrame  {
             }
         };
 
-        ImageIcon homeIcon = new ImageIcon("D:\\SLIIT\\Degree\\1Y\\s2\\OOP\\GrOUP_PROJECT\\carCare\\Project\\src\\main\\java\\Views\\Images\\home2.png");
+        ImageIcon homeIcon = new ImageIcon("E:\\Education\\Year 1 sem 2\\OOP\\Group Project\\carCare\\Project\\src\\main\\java\\Views\\Images\\home2.png");
         Image homeIconImage = homeIcon.getImage();
         Image modifiedHomeIcon = homeIconImage.getScaledInstance(30, 30, Image.SCALE_SMOOTH);
         homeIcon = new ImageIcon(modifiedHomeIcon);
         home = new JLabel( homeIcon);
 
-        ImageIcon reportIcon = new ImageIcon("D:\\SLIIT\\Degree\\1Y\\s2\\OOP\\GrOUP_PROJECT\\carCare\\Project\\src\\main\\java\\Views\\Images\\reports2.png");
+        ImageIcon reportIcon = new ImageIcon("E:\\Education\\Year 1 sem 2\\OOP\\Group Project\\carCare\\Project\\src\\main\\java\\Views\\Images\\reports2.png");
         Image reportIconImage = reportIcon.getImage();
         Image modifiedReportIcon = reportIconImage.getScaledInstance(20, 20, Image.SCALE_SMOOTH);
         reportIcon = new ImageIcon(modifiedReportIcon);
         reports = new JLabel( reportIcon);
 
-        ImageIcon employeeIcon = new ImageIcon("D:\\SLIIT\\Degree\\1Y\\s2\\OOP\\GrOUP_PROJECT\\carCare\\Project\\src\\main\\java\\Views\\Images\\employee1.png");
+        ImageIcon employeeIcon = new ImageIcon("E:\\Education\\Year 1 sem 2\\OOP\\Group Project\\carCare\\Project\\src\\main\\java\\Views\\Images\\employee1.png");
         Image employeeIconImage = employeeIcon.getImage();
         Image modifiedEmployeeIcon = employeeIconImage.getScaledInstance(20, 20, Image.SCALE_SMOOTH);
         employeeIcon = new ImageIcon(modifiedEmployeeIcon);
         employees = new JLabel( employeeIcon);
 
-        ImageIcon sellerIcon = new ImageIcon("D:\\SLIIT\\Degree\\1Y\\s2\\OOP\\GrOUP_PROJECT\\carCare\\Project\\src\\main\\java\\Views\\Images\\dollar.png");
+        ImageIcon sellerIcon = new ImageIcon("E:\\Education\\Year 1 sem 2\\OOP\\Group Project\\carCare\\Project\\src\\main\\java\\Views\\Images\\dollar.png");
         Image sellerIconIconImage = sellerIcon.getImage();
         Image modifiedSellerIcon = sellerIconIconImage.getScaledInstance(20, 20, Image.SCALE_SMOOTH);
         sellerIcon = new ImageIcon(modifiedSellerIcon);

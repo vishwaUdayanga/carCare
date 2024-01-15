@@ -49,6 +49,7 @@ public class RepaintOrderView extends JFrame {
         home.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
+                RepaintOrderView.super.dispose();
                 DashboardView dashboardView = new DashboardView();
                 dashboardView.setContentPane(dashboardView.dashboardPanel);
                 dashboardView.setTitle("Dashboard");
@@ -62,6 +63,7 @@ public class RepaintOrderView extends JFrame {
         employees.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
+                RepaintOrderView.super.dispose();
                 EmployeeView employeeView = new EmployeeView();
                 employeeView.setContentPane(employeeView.dashboardPanel);
                 employeeView.setTitle("Manage Employees");
@@ -75,6 +77,7 @@ public class RepaintOrderView extends JFrame {
         sellers.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
+                RepaintOrderView.super.dispose();
                 Supplier supplier = new Supplier();
                 supplier.setContentPane(supplier.dashboardPanel);
                 supplier.setTitle("Manage Suppliers");
@@ -83,6 +86,20 @@ public class RepaintOrderView extends JFrame {
                 supplier.setVisible(true);
                 Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
                 supplier.setLocation(dim.width/2-supplier.getSize().width/2, dim.height/2-supplier.getSize().height/2);
+            }
+        });
+        reports.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                RepaintOrderView.super.dispose();
+                ReportView reportView = new ReportView();
+                reportView.setContentPane(reportView.dashboardPanel);
+                reportView.setTitle("Monthly Reports");
+                reportView.setSize(800, 500);
+                reportView.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+                reportView.setVisible(true);
+                Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
+                reportView.setLocation(dim.width/2-reportView.getSize().width/2, dim.height/2-reportView.getSize().height/2);
             }
         });
         updateTable();

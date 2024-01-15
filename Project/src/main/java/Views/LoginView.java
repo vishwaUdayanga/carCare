@@ -61,6 +61,7 @@ public class LoginView extends JFrame {
                 Admin valid = controller.validateUser(u);
 
                 if (valid!=null) {
+                    LoginView.super.dispose();
                     DashboardView dashboardView = new DashboardView();
                     dashboardView.setContentPane(dashboardView.dashboardPanel);
                     dashboardView.setTitle("Dashboard");

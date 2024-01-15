@@ -29,6 +29,7 @@ public class DashboardView extends JFrame {
         regularOrders.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
+                DashboardView.super.dispose();
                 OrderView orderView = new OrderView();
                 orderView.setContentPane(orderView.dashboardPanel);
                 orderView.setTitle("Regular Orders");
@@ -42,6 +43,7 @@ public class DashboardView extends JFrame {
         repairOrders.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
+                DashboardView.super.dispose();
                 RepairOrderView repairOrderView = new RepairOrderView();
                 repairOrderView.setContentPane(repairOrderView.dashboardPanel);
                 repairOrderView.setTitle("Repair orders");
@@ -55,6 +57,7 @@ public class DashboardView extends JFrame {
         repaintOrders.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
+                DashboardView.super.dispose();
                 RepaintOrderView repaintOrderView = new RepaintOrderView();
                 repaintOrderView.setContentPane(repaintOrderView.dashboardPanel);
                 repaintOrderView.setTitle("Repaint orders");
@@ -68,6 +71,7 @@ public class DashboardView extends JFrame {
         inventory.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
+                DashboardView.super.dispose();
                 SpareParts spareParts = new SpareParts();
                 spareParts.setContentPane(spareParts.dashboardPanel);
                 spareParts.setTitle("Manage Inventory");
@@ -81,6 +85,7 @@ public class DashboardView extends JFrame {
         home.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
+                DashboardView.super.dispose();
                 DashboardView dashboardView = new DashboardView();
                 dashboardView.setContentPane(dashboardView.dashboardPanel);
                 dashboardView.setTitle("Dashboard");
@@ -94,6 +99,7 @@ public class DashboardView extends JFrame {
         employees.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
+                DashboardView.super.dispose();
                 EmployeeView employeeView = new EmployeeView();
                 employeeView.setContentPane(employeeView.dashboardPanel);
                 employeeView.setTitle("Manage Employees");
@@ -107,6 +113,7 @@ public class DashboardView extends JFrame {
         sellers.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
+                DashboardView.super.dispose();
                 Supplier supplier = new Supplier();
                 supplier.setContentPane(supplier.dashboardPanel);
                 supplier.setTitle("Manage Suppliers");
@@ -115,6 +122,20 @@ public class DashboardView extends JFrame {
                 supplier.setVisible(true);
                 Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
                 supplier.setLocation(dim.width/2-supplier.getSize().width/2, dim.height/2-supplier.getSize().height/2);
+            }
+        });
+        reports.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                DashboardView.super.dispose();
+                ReportView reportView = new ReportView();
+                reportView.setContentPane(reportView.dashboardPanel);
+                reportView.setTitle("Monthly Reports");
+                reportView.setSize(800, 500);
+                reportView.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+                reportView.setVisible(true);
+                Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
+                reportView.setLocation(dim.width/2-reportView.getSize().width/2, dim.height/2-reportView.getSize().height/2);
             }
         });
     }
