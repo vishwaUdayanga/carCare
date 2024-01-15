@@ -475,7 +475,6 @@ public class OrderView extends JFrame {
 
     }
 
-    // implement a round-shaped JTextField
     class RoundedJTextField extends JTextField {
         private Shape shape;
         public RoundedJTextField(int size) {

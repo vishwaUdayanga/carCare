@@ -101,7 +101,7 @@ public class ReportView extends JFrame  {
         });
 
 
-//        updateTable();
+
         productCode.addFocusListener(new FocusAdapter() {
             @Override
             public void focusGained(FocusEvent e) {
@@ -133,52 +133,6 @@ public class ReportView extends JFrame  {
                 }
             }
         });
-//        price.addFocusListener(new FocusAdapter() {
-//            @Override
-//            public void focusGained(FocusEvent e) {
-//                if (price.getText().equals("Price")) {
-//                    price.setText("");
-//                }
-//            }
-//
-//            @Override
-//            public void focusLost(FocusEvent e) {
-//                if (price.getText().isEmpty()) {
-//                    price.setText("Price");
-//                }
-//            }
-//        });
-//        qty.addFocusListener(new FocusAdapter() {
-//            @Override
-//            public void focusGained(FocusEvent e) {
-//                if (qty.getText().equals("Qty")) {
-//                    qty.setText("");
-//                }
-//            }
-//
-//            @Override
-//            public void focusLost(FocusEvent e) {
-//                if (qty.getText().isEmpty()) {
-//                    qty.setText("Qty");
-//                }
-//            }
-//        });
-//
-//        customerEmail.addFocusListener(new FocusAdapter() {
-//            @Override
-//            public void focusGained(FocusEvent e) {
-//                if (customerEmail.getText().equals("Email")) {
-//                    customerEmail.setText("");
-//                }
-//            }
-//
-//            @Override
-//            public void focusLost(FocusEvent e) {
-//                if (customerEmail.getText().isEmpty()) {
-//                    customerEmail.setText("Email");
-//                }
-//            }
-//        });
 
         addButton.addActionListener(new ActionListener() {
             @Override
@@ -226,22 +180,10 @@ public class ReportView extends JFrame  {
                     ResultSetMetaData resultSetMetaData1 = totalCount.getMetaData();
                     Total.setText("Rs : "+totalCount.getString("count"));
                 } catch (Exception ex) {
-                    JOptionPane.showMessageDialog(dashboardPanel, "Could not fetch employee details", "Error", 0);
+                    JOptionPane.showMessageDialog(dashboardPanel, "Could not fetch Repaint order details", "Error", 0);
                     System.out.println(ex.getMessage());
                 }
-//                String employeeEmail = productCode.getText();
-//                String employeeName = productName.getText();
-//                employeeController = new EmployeeController();
-//                Employee employee = employeeController.addEmployee(employeeEmail,employeeName);
-//                if(employeeController.addEmployeeToDatabase()){
-//                    JOptionPane.showMessageDialog(dashboardPanel, "Employee Inserted", "Success", 1);
-//                    updateTable();
-//                }
-//                else{
-//                    JOptionPane.showMessageDialog(dashboardPanel, "Could not add employee", "Error", 0);
-//                }
-//                productCode.setText("Employee Email");
-//                productName.setText("Employee Name");
+               productName.setText("Employee Name");
             }
         });
         orders.addMouseListener(new MouseAdapter() {
@@ -382,7 +324,7 @@ public class ReportView extends JFrame  {
             ResultSetMetaData resultSetMetaData1 = totalCount.getMetaData();
             Total.setText("Rs : "+totalCount.getString("count"));
         } catch (Exception ex) {
-            JOptionPane.showMessageDialog(dashboardPanel, "Could not fetch employee details", "Error", 0);
+            JOptionPane.showMessageDialog(dashboardPanel, "Could not fetch order details", "Error", 0);
             System.out.println(ex.getMessage());
         }
     }
@@ -409,16 +351,10 @@ public class ReportView extends JFrame  {
         EditBtn = new JButton();
         EditBtn.setBorder(emptyBorder);
 
-//        payInvoiceButton = new JButton();
-//        payInvoiceButton.setBorder(emptyBorder);
-//        payInvoiceButton.setMargin(new Insets(50, 50, 50, 50));
-
         dashboardRight = new JPanel();
         Border blackline = BorderFactory.createLineBorder(new Color(200, 200, 200, 255));
         dashboardRight.setBorder(blackline);
 
-//        paying = new JPanel();
-//        paying.setBorder(blackline);
 
         Image image = Toolkit.getDefaultToolkit().getImage("E:\\Education\\Year 1 sem 2\\OOP\\Group Project\\carCare\\Project\\src\\main\\java\\Views\\Images\\orderView3.jpg");
         topImage = new javax.swing.JPanel() {
@@ -515,27 +451,15 @@ public class ReportView extends JFrame  {
         productName = new ReportView.RoundedJTextField(20);
         productName.setText("Employee Name");
 
-//        price = new EmployeeView.RoundedJTextField(20);
-//        price.setText("Price");
-
-//        qty = new EmployeeView.RoundedJTextField(20);
-//        qty.setText("Qty");
-//
-//
-//        customerEmail = new EmployeeView.RoundedJTextField(20);
-//        customerEmail.setText("Email");
 
         DefaultTableModel model = new DefaultTableModel();
         orders = new JTable(model);
 
-        // Create a couple of columns
         model.setColumnCount(4);
 
-        // Append a row
 
     }
 
-    // implement a round-shaped JTextField
     class RoundedJTextField extends JTextField {
         private Shape shape;
         public RoundedJTextField(int size) {
