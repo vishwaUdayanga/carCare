@@ -37,6 +37,7 @@ public class ReportView extends JFrame  {
     private JButton deleteButton;
     private JButton EditBtn;
     private JLabel Total;
+    private JLabel provide;
 
 
     ReportController reportController;
@@ -100,44 +101,26 @@ public class ReportView extends JFrame  {
             }
         });
 
-
-
-        productCode.addFocusListener(new FocusAdapter() {
+        provide.addMouseListener(new MouseAdapter() {
             @Override
-            public void focusGained(FocusEvent e) {
-                if (productCode.getText().equals("Employee Email")) {
-                    productCode.setText("");
-                }
+            public void mouseClicked(MouseEvent e) {
+                ReportView.super.dispose();
+                ProvideView provideView = new ProvideView();
+                provideView.setContentPane(provideView.dashboardPanel);
+                provideView.setTitle("Manage Provides");
+                provideView.setSize(800, 500);
+                provideView.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+                provideView.setVisible(true);
+                Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
+                provideView.setLocation(dim.width/2-provideView.getSize().width/2, dim.height/2-provideView.getSize().height/2);
+                super.mouseClicked(e);
             }
         });
-        productCode.addFocusListener(new FocusAdapter() {
-            @Override
-            public void focusLost(FocusEvent e) {
-                if (productCode.getText().isEmpty()) {
-                    productCode.setText("Employee Email");
-                }
-            }
-        });
-        productName.addFocusListener(new FocusAdapter() {
-            @Override
-            public void focusGained(FocusEvent e) {
-                if (productName.getText().equals("Employee Name")) {
-                    productName.setText("");
-                }
-            }
 
-            @Override
-            public void focusLost(FocusEvent e) {
-                if (productName.getText().isEmpty()) {
-                    productName.setText("Employee Name");
-                }
-            }
-        });
 
         addButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                int rowCount = orders.getRowCount();
                 DefaultTableModel model = (DefaultTableModel) orders.getModel();
                 int count = orders.getRowCount();
                 for (int i = count; i >= 1 ; i--){
@@ -363,6 +346,12 @@ public class ReportView extends JFrame  {
                 g.drawImage(image, 0, 0, 400, 150,  this);
             }
         };
+
+        ImageIcon provideIcon = new ImageIcon("E:\\Education\\Year 1 sem 2\\OOP\\Group Project\\carCare\\Project\\src\\main\\java\\Views\\Images\\reports2.png");
+        Image provideIconImage = provideIcon.getImage();
+        Image modifiedprovideIcon = provideIconImage.getScaledInstance(20, 20, Image.SCALE_SMOOTH);
+        provideIcon = new ImageIcon(modifiedprovideIcon);
+        provide = new JLabel( provideIcon);
 
         Image umbrellaImg = Toolkit.getDefaultToolkit().getImage("E:\\Education\\Year 1 sem 2\\OOP\\Group Project\\carCare\\Project\\src\\main\\java\\Views\\Images\\orderView4.png");
 

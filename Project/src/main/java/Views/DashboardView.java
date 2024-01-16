@@ -3,7 +3,6 @@ package Views;
 import javax.swing.*;
 import javax.swing.border.Border;
 import java.awt.*;
-import java.awt.event.ComponentAdapter;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
@@ -23,6 +22,7 @@ public class DashboardView extends JFrame {
     private JLabel repaintOrders;
     private JLabel repairOrders;
     private JLabel inventory;
+    private JLabel provide;
 
 
     public DashboardView() {
@@ -138,6 +138,21 @@ public class DashboardView extends JFrame {
                 reportView.setLocation(dim.width/2-reportView.getSize().width/2, dim.height/2-reportView.getSize().height/2);
             }
         });
+        provide.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                DashboardView.super.dispose();
+                ProvideView provideView = new ProvideView();
+                provideView.setContentPane(provideView.dashboardPanel);
+                provideView.setTitle("Manage Provides");
+                provideView.setSize(800, 500);
+                provideView.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+                provideView.setVisible(true);
+                Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
+                provideView.setLocation(dim.width/2-provideView.getSize().width/2, dim.height/2-provideView.getSize().height/2);
+                super.mouseClicked(e);
+            }
+        });
     }
 
     public static void main(String[] args) {
@@ -221,6 +236,12 @@ public class DashboardView extends JFrame {
         Image modifiedSellerIcon = sellerIconIconImage.getScaledInstance(20, 20, Image.SCALE_SMOOTH);
         sellerIcon = new ImageIcon(modifiedSellerIcon);
         sellers = new JLabel( sellerIcon);
+
+        ImageIcon provideIcon = new ImageIcon("E:\\Education\\Year 1 sem 2\\OOP\\Group Project\\carCare\\Project\\src\\main\\java\\Views\\Images\\reports2.png");
+        Image provideIconImage = provideIcon.getImage();
+        Image modifiedprovideIcon = provideIconImage.getScaledInstance(20, 20, Image.SCALE_SMOOTH);
+        provideIcon = new ImageIcon(modifiedprovideIcon);
+        provide = new JLabel( provideIcon);
 
 //        ImageIcon topImg = new ImageIcon("E:\\Education\\Year 1 sem 2\\OOP\\Group Project\\carCare\\Project\\src\\main\\java\\Views\\Images\\tools1.jpg");
 //        Image topImgImage = topImg.getImage();

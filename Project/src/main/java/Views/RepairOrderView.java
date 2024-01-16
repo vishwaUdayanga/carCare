@@ -42,6 +42,7 @@ public class RepairOrderView extends JFrame {
     private JTextField servicePrice;
     private JTextField description;
     private JButton statusBtn;
+    private JLabel provide;
 
     OrderController orderController;
 
@@ -100,6 +101,22 @@ public class RepairOrderView extends JFrame {
                 reportView.setVisible(true);
                 Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
                 reportView.setLocation(dim.width/2-reportView.getSize().width/2, dim.height/2-reportView.getSize().height/2);
+            }
+        });
+
+        provide.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                RepairOrderView.super.dispose();
+                ProvideView provideView = new ProvideView();
+                provideView.setContentPane(provideView.dashboardPanel);
+                provideView.setTitle("Manage Provides");
+                provideView.setSize(800, 500);
+                provideView.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+                provideView.setVisible(true);
+                Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
+                provideView.setLocation(dim.width/2-provideView.getSize().width/2, dim.height/2-provideView.getSize().height/2);
+                super.mouseClicked(e);
             }
         });
         updateTable();
@@ -380,6 +397,12 @@ public class RepairOrderView extends JFrame {
                 g.drawImage(image, 0, 0, 260, 170,  this);
             }
         };
+
+        ImageIcon provideIcon = new ImageIcon("E:\\Education\\Year 1 sem 2\\OOP\\Group Project\\carCare\\Project\\src\\main\\java\\Views\\Images\\reports2.png");
+        Image provideIconImage = provideIcon.getImage();
+        Image modifiedprovideIcon = provideIconImage.getScaledInstance(20, 20, Image.SCALE_SMOOTH);
+        provideIcon = new ImageIcon(modifiedprovideIcon);
+        provide = new JLabel( provideIcon);
 
         Image umbrellaImg = Toolkit.getDefaultToolkit().getImage("E:\\Education\\Year 1 sem 2\\OOP\\Group Project\\carCare\\Project\\src\\main\\java\\Views\\Images\\orderView4.png");
 

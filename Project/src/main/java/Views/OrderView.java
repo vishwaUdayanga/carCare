@@ -39,6 +39,7 @@ public class OrderView extends JFrame {
     private JLabel subTotal;
     private JLabel amountFinal;
     private JTextField customerEmail;
+    private JLabel provide;
 
     OrderController orderController;
 
@@ -98,6 +99,22 @@ public class OrderView extends JFrame {
                 reportView.setVisible(true);
                 Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
                 reportView.setLocation(dim.width/2-reportView.getSize().width/2, dim.height/2-reportView.getSize().height/2);
+            }
+        });
+
+        provide.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                OrderView.super.dispose();
+                ProvideView provideView = new ProvideView();
+                provideView.setContentPane(provideView.dashboardPanel);
+                provideView.setTitle("Manage Provides");
+                provideView.setSize(800, 500);
+                provideView.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+                provideView.setVisible(true);
+                Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
+                provideView.setLocation(dim.width/2-provideView.getSize().width/2, dim.height/2-provideView.getSize().height/2);
+                super.mouseClicked(e);
             }
         });
 
@@ -378,6 +395,12 @@ public class OrderView extends JFrame {
         Image modifiedHomeIcon = homeIconImage.getScaledInstance(30, 30, Image.SCALE_SMOOTH);
         homeIcon = new ImageIcon(modifiedHomeIcon);
         home = new JLabel( homeIcon);
+
+        ImageIcon provideIcon = new ImageIcon("E:\\Education\\Year 1 sem 2\\OOP\\Group Project\\carCare\\Project\\src\\main\\java\\Views\\Images\\reports2.png");
+        Image provideIconImage = provideIcon.getImage();
+        Image modifiedprovideIcon = provideIconImage.getScaledInstance(20, 20, Image.SCALE_SMOOTH);
+        provideIcon = new ImageIcon(modifiedprovideIcon);
+        provide = new JLabel( provideIcon);
 
         ImageIcon reportIcon = new ImageIcon("E:\\Education\\Year 1 sem 2\\OOP\\Group Project\\carCare\\Project\\src\\main\\java\\Views\\Images\\reports2.png");
         Image reportIconImage = reportIcon.getImage();
